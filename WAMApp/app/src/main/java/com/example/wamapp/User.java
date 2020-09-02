@@ -33,6 +33,7 @@ public class User {
     }
 
 
+    // Getters and Setters
     public int getUserID() {
         return userID;
     }
