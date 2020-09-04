@@ -32,6 +32,15 @@ public class User {
         // generate userID somehow down the road
     }
 
+    // Calculate BMI
+    // BMI = 703 x weight (lbs) / [height (inches)]^2
+    public static double calculateBMI(int height, double weight){
+        double heightSq = height * height;
+        double weightConv = weight * 703;
+        double BMI = weightConv / heightSq;
+        return BMI; 
+    }
+
 
     // Getters and Setters
     public int getUserID() {
