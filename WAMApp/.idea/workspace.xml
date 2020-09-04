@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1f90e6-b069-4658-b5c0-7374fe59d308" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/User.java" afterDir="false" />
     </list>
@@ -140,5 +138,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="630" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1599016057285" />
+    <state x="629" y="236" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599247643106">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="629" y="236" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1599247643106" />
   </component>
 </project>
