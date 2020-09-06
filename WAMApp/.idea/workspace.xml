@@ -8,7 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8e1f90e6-b069-4658-b5c0-7374fe59d308" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/user_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/user_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +21,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_30" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -31,6 +33,14 @@
         <projects_view />
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -55,6 +65,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1599340076107" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -130,10 +141,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1893" y="425" key="#com.intellij.ide.util.MemberChooser" timestamp="1599340959518">
+      <screen x="1440" y="23" width="2560" height="1371" />
+    </state>
+    <state x="1893" y="425" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.23.2560.1371@1440.23.2560.1371" timestamp="1599340959518" />
     <state x="408" y="196" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598895908842">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="408" y="196" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877@0.23.1440.877" timestamp="1598895908842" />
+    <state x="1668" y="470" key="AndroidCreateResourceFileDialog" timestamp="1599340467022">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1668" y="470" key="AndroidCreateResourceFileDialog/0.23.1440.833/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599340467022" />
     <state x="630" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1599016057285">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
