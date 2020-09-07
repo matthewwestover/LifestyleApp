@@ -7,7 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1f90e6-b069-4658-b5c0-7374fe59d308" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/buttonshape.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_edittext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/UserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/wamapp/UserFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/user_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/user_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +33,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -31,17 +46,22 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="14" />
-    <option name="y" value="37" />
-    <option name="width" value="1412" />
-    <option name="height" value="849" />
-  </component>
   <component name="ProjectId" id="1geFEtXvIcHOVQasxKjVqbhqe8g" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -51,7 +71,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1599340076107" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -61,7 +83,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -127,9 +149,40 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1893" y="438" key="#com.intellij.ide.util.MemberChooser" timestamp="1599434655774">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1893" y="438" key="#com.intellij.ide.util.MemberChooser/0.23.1440.835/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599434655774" />
+    <state x="1893" y="425" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.23.2560.1371@1440.23.2560.1371" timestamp="1599340959518" />
     <state x="408" y="196" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598895908842">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="408" y="196" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.877@0.23.1440.877" timestamp="1598895908842" />
+    <state x="1883" y="462" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599426285469">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1883" y="462" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.835/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599426285469" />
+    <state x="1668" y="470" key="AndroidCreateResourceFileDialog" timestamp="1599433232452">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1668" y="470" key="AndroidCreateResourceFileDialog/0.23.1440.833/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599340467022" />
+    <state x="1668" y="470" key="AndroidCreateResourceFileDialog/0.23.1440.835/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599433232452" />
+    <state x="1922" y="493" key="chooseDestDirectoryDialog" timestamp="1599426242654">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1922" y="493" key="chooseDestDirectoryDialog/0.23.1440.835/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599426242654" />
+    <state x="2280" y="511" key="com.intellij.ide.util.TipDialog" timestamp="1599421328643">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="630" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1599016057285" />
+    <state x="2280" y="511" key="com.intellij.ide.util.TipDialog/0.23.1440.834/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599421328643" />
+    <state x="629" y="236" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599247643106">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="629" y="236" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080/-1680.0.1680.1050@0.0.1920.1080" timestamp="1599247643106" />
+    <state x="1745" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1599434136478">
+      <screen x="1440" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1745" y="348" width="670" height="676" key="search.everywhere.popup/0.23.1440.835/1440.23.2560.1417@1440.23.2560.1417" timestamp="1599434136478" />
   </component>
 </project>
