@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-       // implements UserFragment.OnDataPass
+        implements UserFragment.OnDataPass
 {
     private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mBMI;
 
@@ -18,17 +18,23 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         //Create Fragment
-       // UserFragment userFragment = new UserFragment();
+        UserFragment userFragment = new UserFragment();
 
         //Replace User Fragment Container
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-        //fTrans.replace(R.id.user_frag, userFragment, "user_frag");
+        fTrans.replace(R.id.user_frag, userFragment, "user_frag");
         fTrans.commit();
     }
-   // @Override
-//    public void onDataPass(String[] data)
-//    {
-//
-//    }
+    @Override
+    public void onDataPass(String[] data)
+    {
+        mFirstName = data[0];
+        mLastName = data[1];
+        mAge = data [2];
+        mSex = data [3];
+        mLocation = data [4];
+        mHeight = data [5];
+        mWeight = data[6];
+    }
 
 }
