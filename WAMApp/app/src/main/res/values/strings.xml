@@ -4,9 +4,10 @@
     <string name="f_l_name">Name: </string>
     <string name="age">Age: </string>
     <string name="sex">Sex: </string>
-    <string name="location">Location: </string>
-    <string name="height">Height: </string>
-    <string name="weight">Weight: </string>
+    <string name="country">Country: </string>
+    <string name="city">City: </string>
+    <string name="height">Height (in): </string>
+    <string name="weight">Weight (lbs): </string>
     <string name="photo">Take Profile Picture: </string>
     <string name="enter_name">    Enter Name</string>
     <string name="submit_button">Submit</string>
