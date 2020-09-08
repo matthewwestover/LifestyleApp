@@ -21,7 +21,7 @@ public class UserFragment extends Fragment
         implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
     private EditText mETFullName;
-    private Spinner mSAge, mSSex, mSLocation, mSHeight, mSWeight;
+    private Spinner mSAge, mSSex, mSCountry, mSCity, mSHeight, mSWeight;
     private Button mBtPicture, mBtSubmit;
     private String mStringFullName;
     OnDataPass mDataPasser;
@@ -69,7 +69,7 @@ public class UserFragment extends Fragment
         Integer [] ages = new Integer[100];
         for(int i = 0; i<100; i++)
         {
-            ages[i] = i;
+            ages[i] = i + 1; //
         }
         ArrayAdapter<Integer> ageDA = new ArrayAdapter<Integer>
                 (mSAge.getContext(), android.R.layout.simple_spinner_item, ages);
@@ -77,7 +77,7 @@ public class UserFragment extends Fragment
         ageDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSAge.setAdapter(ageDA);
 
-        //set Sex
+        //set Sex spinner
         mSSex = (Spinner) view.findViewById(R.id.sex_spin);
         List<String> sexes = new ArrayList<>();
         sexes.add("Female");
@@ -87,9 +87,32 @@ public class UserFragment extends Fragment
         sexDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSSex.setAdapter(sexDA);
 
-        //set Location
+        //set Country spinner
+        mSCountry = (Spinner) view.findViewById(R.id.country_spin);
+        List<String> countries = new ArrayList<>(); // Can add more later?
+        countries.add("USA");
+        countries.add("CA");
+        countries.add("MX");
+        ArrayAdapter<String> countryDA = new ArrayAdapter<String>
+                (mSCountry.getContext(), android.R.layout.simple_spinner_item, countries);
+        countryDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSCountry.setAdapter(countryDA);
 
-        //Set Height in inches
+        //set City spinner
+        mSCity = (Spinner) view.findViewById(R.id.city_spin);
+        List<String> cities = new ArrayList<>(); // Can add more later?
+        cities.add("Los Angeles");
+        cities.add("Salt Lake City");
+        cities.add("Chicago");
+        cities.add("New York City");
+        cities.add("Toronto");
+        cities.add("Mexico City");
+        ArrayAdapter<String> cityDA = new ArrayAdapter<String>
+                (mSCity.getContext(), android.R.layout.simple_spinner_item, cities);
+        cityDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSCity.setAdapter(cityDA);
+
+        //Set Height in inches spinner
         mSHeight = (Spinner) view.findViewById(R.id.height_spin);
         List<Integer> height = new ArrayList<>();
         for(int i = 48; i<100; i++)
@@ -98,13 +121,10 @@ public class UserFragment extends Fragment
         }
         ArrayAdapter<Integer> heightDA = new ArrayAdapter<Integer>
                 (mSHeight.getContext(), android.R.layout.simple_spinner_item, height);
-
         heightDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSHeight.setAdapter(heightDA);
 
-
-        //Set Weight in lbs
-
+        //Set Weight in lbs spinner
         mSWeight = (Spinner) view.findViewById(R.id.weight_spin);
         List<Integer> weight = new ArrayList<>();
         for(int i = 100; i<400; i++)
