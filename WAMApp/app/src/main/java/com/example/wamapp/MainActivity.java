@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
 
         //Replace User Fragment Container
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-        fTrans.replace(R.id.user_frag, userFragment, "user_frag");
+        fTrans.replace(R.id.fl_main_container_phone, userFragment, "user_frag");
         fTrans.commit();
     }
     @Override

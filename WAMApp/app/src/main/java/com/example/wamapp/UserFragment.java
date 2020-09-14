@@ -58,7 +58,7 @@ public class UserFragment extends Fragment
     public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.user_fragment,container,false);
+        View view = inflater.inflate(R.layout.edituser_fragment,container,false);
         mBtPicture = (Button) view.findViewById(R.id.pic_button);
         mBtPicture.setOnClickListener(this);
         mBtSubmit = (Button) view.findViewById(R.id.sub_button);
