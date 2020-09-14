@@ -1,15 +1,19 @@
 package com.example.wamapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-        implements UserFragment.OnDataPass
+        implements EditUserFragment.OnDataPass
 {
-    private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mBMI;
+    private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mPhoto;
+    private User user;
+    private Boolean isEditUser = false;
+    private Boolean userExists = false;
+    private int containerBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -17,14 +21,12 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Create Fragment
-        UserFragment userFragment = new UserFragment();
+        // Tablet Check
+        containerBody = isTablet() ? R.id.fl_main_container_tablet : R.id.fl_main_container_phone;
 
-        //Replace User Fragment Container
-        FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-        fTrans.replace(R.id.user_frag, userFragment, "user_frag");
-        fTrans.commit();
+        changeDisplay();
     }
+
     @Override
     public void onDataPass(String[] data)
     {
@@ -35,6 +37,29 @@ public class MainActivity extends AppCompatActivity
         mLocation = data [4];
         mHeight = data [5];
         mWeight = data[6];
+        mPhoto = data[7];
     }
 
+    public void changeDisplay() {
+        FragmentManager fManager = getSupportFragmentManager();
+        FragmentTransaction fTrans = fManager.beginTransaction();
+
+        if (!userExists) {
+            fTrans.replace(containerBody, new EditUserFragment(), "edituser_frag");
+        } else {
+            fTrans.replace(containerBody, new MasterListFragment(), "masterListFragment");
+        }
+        fTrans.commit();
+    }
+
+    public boolean isTablet() {
+        return getResources().getBoolean(R.bool.isTablet);
+    }
+
+    @Override
+    public void onEditUserSubmit() {
+        isEditUser = false;
+        userExists = true;
+        changeDisplay();
+    }
 }
