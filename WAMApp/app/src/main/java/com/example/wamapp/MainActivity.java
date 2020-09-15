@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-        implements EditUserFragment.OnDataPass {
+        implements EditUserFragment.OnDataPass, MyRVAdapter.DataPasser {
     private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mPhoto;
     private User user;
     private Boolean isEditUser = false;
@@ -59,4 +60,16 @@ public class MainActivity extends AppCompatActivity
         userExists = true;
         changeDisplay();
     }
+
+    // For MasterListFragment
+    @Override
+    public void passData(int position) {
+        Bundle positionBundle = new Bundle();
+        positionBundle.putInt("click_position", position);
+
+        Intent sendIntent = new Intent(this, EditUserFragment.class);
+        sendIntent.putExtras(positionBundle);
+        startActivity(sendIntent);
+    }
+
 }

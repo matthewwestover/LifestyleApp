@@ -3,25 +3,33 @@
     android:id="@+id/linearLayout2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
+    android:layout_marginLeft="35dp"
     android:layout_marginTop="30dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="30dp"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/modImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:paddingLeft="10dp" />
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:paddingLeft="10dp"
+        />
 
     <TextView
         android:id="@+id/modText"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
         android:text="Dummy"
-        android:textAllCaps="true"
-        android:textAppearance="@style/ModItem" />
+        android:textSize="40dp"
+        android:gravity="center"
+         />
+
+    <ImageView
+        android:id="@+id/forward"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/forward"
+        />
 
 </LinearLayout>
