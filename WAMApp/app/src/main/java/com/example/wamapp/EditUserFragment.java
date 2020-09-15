@@ -1,4 +1,5 @@
 package com.example.wamapp;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ public class EditUserFragment extends Fragment
     //Callback interface
     public interface OnDataPass {
         public void onDataPass(String[] data);
+
         void onEditUserSubmit();
     }
 
@@ -156,7 +158,7 @@ public class EditUserFragment extends Fragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==1 && resultCode == getActivity().RESULT_OK){
+        if (requestCode == 1 && resultCode == getActivity().RESULT_OK) {
             Bundle thumbnailImage = data.getExtras();
             photo = (Bitmap) thumbnailImage.get("data");
         }
