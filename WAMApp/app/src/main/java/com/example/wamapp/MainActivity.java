@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-        implements EditUserFragment.OnDataPass
-{
+        implements EditUserFragment.OnDataPass, MyRVAdapter.DataPasser {
     private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mPhoto;
     private User user;
     private Boolean isEditUser = false;
@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity
     private int containerBody;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -28,14 +27,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDataPass(String[] data)
-    {
+    public void onDataPass(String[] data) {
         mFirstName = data[0];
         mLastName = data[1];
-        mAge = data [2];
-        mSex = data [3];
-        mLocation = data [4];
-        mHeight = data [5];
+        mAge = data[2];
+        mSex = data[3];
+        mLocation = data[4];
+        mHeight = data[5];
         mWeight = data[6];
         mPhoto = data[7];
     }
@@ -62,4 +60,16 @@ public class MainActivity extends AppCompatActivity
         userExists = true;
         changeDisplay();
     }
+
+    // For MasterListFragment
+    @Override
+    public void passData(int position) {
+        Bundle positionBundle = new Bundle();
+        positionBundle.putInt("click_position", position);
+
+        Intent sendIntent = new Intent(this, EditUserFragment.class);
+        sendIntent.putExtras(positionBundle);
+        startActivity(sendIntent);
+    }
+
 }

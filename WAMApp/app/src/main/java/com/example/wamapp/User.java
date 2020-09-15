@@ -33,7 +33,7 @@ public class User {
 
     // Calculate BMI
     // BMI = 703 x weight (lbs) / [height (inches)]^2
-    public static double calculateBMI(int height, double weight){
+    public static double calculateBMI(int height, double weight) {
         double heightSq = height * height;
         double weightConv = weight * 703;
         double BMI = weightConv / heightSq;
@@ -44,11 +44,11 @@ public class User {
     // Formula from: https://bmi-calories.com/bmr-calculator.html
     // Men BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
     // Women BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
-    public static double calculateBMR(int height, double weight, int age, String sex){
+    public static double calculateBMR(int height, double weight, int age, String sex) {
         double heightCM = height * 2.54;
         double weightKG = weight * 0.453592;
         double BMR = 0;
-        if(sex == "Male"){
+        if (sex == "Male") {
             weightKG = weightKG * 13.397;
             heightCM = heightCM * 4.799;
             double age2 = age * 5.677;
@@ -65,19 +65,23 @@ public class User {
     public static double calculateCalories(double BMR, String activityLevel, double weightGoal) {
         double calories = 0;
         switch (activityLevel) {
-            case "Sedentary": calories = BMR * 1.2;
+            case "Sedentary":
+                calories = BMR * 1.2;
                 break;
-            case "Lightly Active": calories = BMR * 1.375;
+            case "Lightly Active":
+                calories = BMR * 1.375;
                 break;
-            case "Moderately Active": calories = BMR * 1.55;
+            case "Moderately Active":
+                calories = BMR * 1.55;
                 break;
-            case "Very Active": calories = BMR * 1.725;
+            case "Very Active":
+                calories = BMR * 1.725;
                 break;
         }
-        calories = (int)calories;
+        calories = (int) calories;
         return calories + (500 * weightGoal);
     }
-    
+
     // Getters and Setters
     public int getUserID() {
         return userID;
