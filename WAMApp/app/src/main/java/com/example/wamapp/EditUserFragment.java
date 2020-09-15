@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,9 +76,9 @@ public class EditUserFragment extends Fragment
         mBtSubmit.setOnClickListener(this);
 
         //set Age spinner
-        Integer[] ages = new Integer[100];
-        for (int i = 0; i < 100; i++) {
-            ages[i] = i + 1; //
+        List<Integer> ages = new ArrayList<>();
+        for (int i = 13; i <= 100; i++) {
+            ages.add(i); //
         }
         ArrayAdapter<Integer> ageDA = new ArrayAdapter<>(mSAge.getContext(), android.R.layout.simple_spinner_dropdown_item, ages);
         ageDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
