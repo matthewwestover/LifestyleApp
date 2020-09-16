@@ -9,11 +9,12 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
         implements EditUserFragment.OnDataPass, MyRVAdapter.DataPasser {
-    private String mFirstName, mLastName, mAge, mSex, mLocation, mHeight, mWeight, mPhoto;
+    private String mFirstName, mLastName, mAge, mSex, mState, mCountry, mHeight, mWeight, mPhoto;
     private User user;
     private Boolean isEditUser = false;
     private Boolean userExists = false;
     private int containerBody;
+    private MasterListFragment mMasterListFragment = new MasterListFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,11 @@ public class MainActivity extends AppCompatActivity
         mLastName = data[1];
         mAge = data[2];
         mSex = data[3];
-        mLocation = data[4];
-        mHeight = data[5];
-        mWeight = data[6];
-        mPhoto = data[7];
+        mState = data[4];
+        mCountry = data[5];
+        mHeight = data[6];
+        mWeight = data[7];
+        mPhoto = data[8];
     }
 
     public void changeDisplay() {
@@ -45,7 +47,11 @@ public class MainActivity extends AppCompatActivity
         if (!userExists) {
             fTrans.replace(containerBody, new EditUserFragment(), "edituser_frag");
         } else {
-            fTrans.replace(containerBody, new MasterListFragment(), "masterListFragment");
+            Bundle fragmentBundle = new Bundle();
+            fragmentBundle.putString("STATE", mState);
+            fragmentBundle.putString("COUNTRY", mCountry);
+            mMasterListFragment.setArguments(fragmentBundle);
+            fTrans.replace(containerBody, mMasterListFragment, "masterListFragment");
         }
         fTrans.commit();
     }
@@ -67,9 +73,10 @@ public class MainActivity extends AppCompatActivity
         Bundle positionBundle = new Bundle();
         positionBundle.putInt("click_position", position);
 
-        Intent sendIntent = new Intent(this, EditUserFragment.class);
-        sendIntent.putExtras(positionBundle);
-        startActivity(sendIntent);
+//        Intent sendIntent = new Intent(this, EditUserFragment.class);
+//        sendIntent.putExtras(positionBundle);
+//        startActivity(sendIntent);
     }
+
 
 }

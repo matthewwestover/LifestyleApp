@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,16 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
     private List<Integer> mImageItems;
     private Context mContext;
     private DataPasser mDataPasser;
+    private  List <String> mData;
 
-    public MyRVAdapter(List<String> inputList, List<Integer> inputImages) {
+    public MyRVAdapter(List<String> inputList, List<Integer> inputImages, List<String> data) {
         mListItems = inputList;
         mImageItems = inputImages;
+        mData = data;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
         protected View itemLayout;
         protected TextView itemModText;
         protected ImageView itemModImage;
@@ -60,6 +65,20 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
         holder.itemLayout.setOnClickListener(new View.OnClickListener() {
                                                  @Override
                                                  public void onClick(View view) {
+                                                     if(position == 4){
+                                                         //We have to grab the search term and construct a URI object from it.
+                                                         Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q="+ " Hikes in " + "Salt Lake City" + " "+ "USA");
+
+                                                         //Create the implicit intent
+                                                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
+
+
+                                                         //If there's an activity associated with this intent, launch it
+                                                         if(mapIntent.resolveActivity(mContext.getPackageManager())!=null) {
+                                                             mContext.startActivity(mapIntent);
+
+                                                         }
+                                                     }
                                                      mDataPasser.passData(position);
                                                  }
                                              }
