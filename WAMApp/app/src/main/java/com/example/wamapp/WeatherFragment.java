@@ -54,13 +54,16 @@ public class WeatherFragment extends Fragment {
         }
     }
 
-    public void getTemperature(View view) {
-        cityName = view.findViewById(R.id.city_spin);
-        temperatureResult = view.findViewById(R.id.temperature_result);
-        countryName = view.findViewById(R.id.country_spin);
+    public String getTemperature(View view) {
+//        cityName = view.findViewById(R.id.city_spin);
+//        temperatureResult = view.findViewById(R.id.temperature_result);
+//        countryName = view.findViewById(R.id.country_spin);
+        String resultText = "";
 
-        String cName = cityName.getText().toString();
-        String coName = countryName.getText().toString();
+//        String cName = cityName.getText().toString();
+        String cName = "Salt Lake City";
+//        String coName = countryName.getText().toString();
+        String coName = "USA";
 
         if (coName == "USA") {
             coName = "us";
@@ -75,28 +78,26 @@ public class WeatherFragment extends Fragment {
         try {
             content = weather.execute("https://api.openweathermap.org/data/2.5/weather?q=" +
                     cName + "," + coName + "&units=imperial&appid=f6433bd2ce4b361f4acb887f3d679a8e").get();
-            Log.i("content",content);
 
             // JSON
             JSONObject jObj = new JSONObject(content);
             String mainTemp = jObj.getString("main");
-            Log.i("mainTemp", mainTemp);
+            String cityName = jObj.getString("name");
 
             String temperature = "";
 
             JSONObject mainPart = new JSONObject(mainTemp);
             temperature = mainPart.getString("temp");
 
-            double fTemp = Double.valueOf(temperature);
+            double fTemp = Double.parseDouble(temperature);
             DecimalFormat df = new DecimalFormat("#");
             temperature = df.format(fTemp);
 
-            Log.i("temp",temperature);
-
-            String resultText = temperatureResult + "˚";
-            temperatureResult.setText(resultText);
+            resultText = cityName + "\n" + temperature + "˚";
+//            temperatureResult.setText(resultText);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return resultText;
     }
 }

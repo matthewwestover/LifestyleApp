@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,12 +60,16 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
         holder.itemModText.setText(mListItems.get(position));
         holder.itemModImage.setImageResource(mImageItems.get(position));
         holder.itemLayout.setOnClickListener(new View.OnClickListener() {
                                                  @Override
                                                  public void onClick(View view) {
+                                                     if (position == 3) {
+                                                         WeatherFragment wf = new WeatherFragment();
+                                                         String temperature = wf.getTemperature(view);
+                                                         Log.i("temperature", temperature);
+                                                     }
                                                      if(position == 4){
                                                          //We have to grab the search term and construct a URI object from it.
                                                          Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q="+ " Hikes in " + "Salt Lake City" + " "+ "USA");
