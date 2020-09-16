@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         // Tablet Check
-        containerBody = isTablet() ? R.id.fl_main_container_tablet : R.id.fl_main_container_phone;
+        containerBody = isTablet() ? R.id.fl_list_tablet : R.id.fl_main_container_phone;
 
         changeDisplay();
     }
