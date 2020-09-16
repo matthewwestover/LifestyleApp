@@ -3,6 +3,7 @@ package com.example.wamapp;
 import androidx.fragment.app.Fragment;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -98,10 +99,4 @@ public class WeatherFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//    }
 }
