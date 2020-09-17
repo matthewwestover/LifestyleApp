@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GoalsFragment"
+    android:background="@color/profile_color"
+    >
+
+    <TextView
+        android:id="@+id/tv_activity_level"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:text="@string/activity_level"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/active_spin"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@+id/tv_activity_level"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_weight_goal"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:text="@string/weight_goal"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_activity_level" />
+
+    <Spinner
+        android:id="@+id/weightgoal_spin"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@+id/tv_weight_goal"
+        app:layout_constraintTop_toBottomOf="@+id/active_spin" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/submit_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_weight_goal" />
+
+    <TextView
+        android:id="@+id/tv_calorie_label"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="-16sp"
+        android:text="@string/calorie_label"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submit_button" />
+    <TextView
+        android:id="@+id/tv_calorie_label2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="-16sp"
+        android:text="@string/calorie_label2"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calorie_label" />
+
+    <TextView
+        android:id="@+id/tv_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TEST"
+        android:textStyle="bold"
+        android:textSize="75sp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calorie_label2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

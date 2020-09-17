@@ -15,5 +15,11 @@
     <string name="enter_lname">Last Name</string>
     <string name="submit_button">Submit</string>
     <string name="splash_string">WAMApp</string>
-
+    <string name="bmi_head">Your BMI:</string>
+    <string name="activity_level">Activity Level</string>
+    <string name="weight_goal">Weight Goal</string>
+    <string name="calorie_label">Target Calories</string>
+    <string name="calorie_label2">Per Day</string>
+    <string name="hikes">Click to Search for Hikes</string>
+    <string name="search">Search</string>
 </resources>
