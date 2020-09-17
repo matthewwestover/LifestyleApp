@@ -1,5 +1,7 @@
 package com.example.wamapp;
 
+import android.graphics.Bitmap;
+
 public class User {
     // Member Vars
     private int userID;
@@ -7,36 +9,38 @@ public class User {
     private String lastName;
     private int age;
     private String sex;
-    private String photoPath;
+    private Bitmap photo;
     private String city;
     private String country;
     private int height; // convert to total inches
     private double weight; // convert as total pounds
-    private int BMI;
-    private int BMR;
+    private double BMI;
+    private double BMR;
     private String activeLevel;
     private int weightGoal;
     private int calories;
 
-    public User(String firstName, String lastName, int age, String sex, String photoPath, String city, String country, int height, double weight) {
+    public User(int userId, String firstName, String lastName, int age, String sex, Bitmap photo, String city, String country, int height, double weight) {
+        this.userID = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.sex = sex;
-        this.photoPath = photoPath;
+        this.photo = photo;
         this.city = city;
         this.country = country;
         this.height = height;
         this.weight = weight;
-        // generate userID somehow down the road
+        this.BMI = calculateBMI(height, weight);
+        this.BMR = calculateBMR(height, weight, age, sex);
     }
 
     // Calculate BMI
-    // BMI = 703 x weight (lbs) / [height (inches)]^2
     public static double calculateBMI(int height, double weight) {
-        double heightSq = height * height;
-        double weightConv = weight * 703;
-        double BMI = weightConv / heightSq;
+        double heightM = height * 0.0254;
+        double heightSq = heightM * heightM;
+        double weightKg = weight * 0.453592;
+        double BMI = weightKg / heightSq;
         return BMI;
     }
 
@@ -80,6 +84,19 @@ public class User {
         }
         calories = (int) calories;
         return calories + (500 * weightGoal);
+    }
+
+    public void updateUser(int userId, String firstName, String lastName, int age, String sex, Bitmap photo, String city, String country, int height, double weight) {
+        this.userID = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.sex = sex;
+        this.photo = photo;
+        this.city = city;
+        this.country = country;
+        this.height = height;
+        this.weight = weight;
     }
 
     // Getters and Setters
@@ -127,12 +144,12 @@ public class User {
         this.sex = sex;
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public Bitmap getPhoto() {
+        return this.photo;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 
     public String getCity() {
@@ -167,7 +184,7 @@ public class User {
         this.weight = weight;
     }
 
-    public int getBMI() {
+    public double getBMI() {
         return BMI;
     }
 
@@ -175,7 +192,7 @@ public class User {
         this.BMI = BMI;
     }
 
-    public int getBMR() {
+    public double getBMR() {
         return BMR;
     }
 
