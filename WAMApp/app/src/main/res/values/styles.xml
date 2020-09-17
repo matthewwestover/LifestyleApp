@@ -7,4 +7,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="HeaderText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#D1D1D1</item>
+    </style>
+
+    <style name="BMIText">
+        <item name="android:textSize">
+            144sp
+        </item>
+    </style>
+
+    <style name="BMIHead">
+        <item name="android:textSize">
+            20sp
+        </item>
+    </style>
+
 </resources>
