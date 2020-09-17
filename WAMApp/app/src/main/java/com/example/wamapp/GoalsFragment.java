@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 public class GoalsFragment extends Fragment
         implements View.OnClickListener {
 
-    OnDataPass dataPasser;
     Spinner mSActive, mSWeight;
     String mUserSex, mUserActivityLevel;
     double mUserBMR, mUserGoal, mUserCalories;
@@ -33,10 +32,6 @@ public class GoalsFragment extends Fragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
-
-    public interface OnDataPass{
-        void onDataPass(String activityLevel, double BMR, double dailyCalories, double goal);
     }
 
     @Nullable
@@ -115,9 +110,9 @@ public class GoalsFragment extends Fragment
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
                 mUserGoal = Double.parseDouble(finalWeightChange[position]);
-                if(mUserGoal > 2 || mUserGoal < -2) {
-                    Toast.makeText(getActivity(), "Warning: Losing/Gaining more than 2 pounds", Toast.LENGTH_SHORT).show();
-                }
+//                if(mUserGoal > 2 || mUserGoal < -2) {
+//                    Toast.makeText(getActivity(), "Warning: Losing/Gaining more than 2 pounds", Toast.LENGTH_SHORT).show();
+//                }
             }
 
             @Override
@@ -142,12 +137,12 @@ public class GoalsFragment extends Fragment
         mUserBMR = User.calculateBMR(mUserHeight, mUserWeight, mUserAge, mUserSex);
         mUserCalories = User.calculateCalories(mUserBMR, mUserActivityLevel, mUserGoal);
         int calories = (int) mUserCalories;
+        String calString = Integer.toString(calories);
         int calorieLimit = mUserSex.equals("Male") ? 1200 : 1000;
         if(mUserCalories < calorieLimit) {
             Toast.makeText(getActivity(), "Warning: Low Calorie Level", Toast.LENGTH_SHORT).show();
         }
-        tvRecommendedCalories.setText(calories + " cal");
-        dataPasser.onDataPass(mUserActivityLevel, mUserBMR, mUserCalories, mUserGoal);
+        tvRecommendedCalories.setText(calString + " cal");
     }
 
     @Override

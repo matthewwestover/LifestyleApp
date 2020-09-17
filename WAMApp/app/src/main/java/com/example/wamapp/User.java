@@ -36,11 +36,11 @@ public class User {
     }
 
     // Calculate BMI
-    // BMI = 703 x weight (lbs) / [height (inches)]^2
     public static double calculateBMI(int height, double weight) {
-        double heightSq = height * height;
-        double weightConv = weight * 703;
-        double BMI = weightConv / heightSq;
+        double heightM = height * 0.0254;
+        double heightSq = heightM * heightM;
+        double weightKg = weight * 0.453592;
+        double BMI = weightKg / heightSq;
         return BMI;
     }
 

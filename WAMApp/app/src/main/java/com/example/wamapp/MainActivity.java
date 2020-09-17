@@ -3,6 +3,8 @@ package com.example.wamapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -75,11 +77,15 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                 break;
             }
             case 1: { // BMI Page
-                double bmiValue = User.calculateBMI(mUserWeight, mUserHeight);
+                double bmiValue = User.calculateBMI(mUserHeight, mUserWeight);
                 Intent sendIntent = new Intent(this, ViewDetailActivity.class);
                 positionBundle.putDouble("bmi_data", bmiValue);
                 sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
+                try {
+                    startActivity(sendIntent);
+                } catch (Exception ex) {
+                    Log.e("Error", ex.getMessage());
+                }
                 break;
             }
             case 2: { //BMR Page
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                 Intent sendIntent = new Intent(this, ViewDetailActivity.class);
                 positionBundle.putInt("userAge", mUserAge);
                 positionBundle.putInt("userHeight", mUserHeight);
-                positionBundle.putInt("userHeight", mUserHeight);
+                positionBundle.putInt("userWeight", mUserWeight);
                 positionBundle.putString("userSex", mUserSex);
                 sendIntent.putExtras(positionBundle);
                 startActivity(sendIntent);
@@ -134,9 +140,9 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         Bitmap thumbnail = (Bitmap) thumbnailImage.get("data");
         mUser = new User(1, firstName, lastName, age, sex, thumbnail, city, country, height, weight);
+        FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
 
         mMasterListFrag = new MasterListFragment();
-        FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
         fTrans.replace(R.id.fl_main_container_phone, mMasterListFrag, "frag_masterlist");
 
         Bundle headerBundle = new Bundle();
@@ -147,21 +153,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         mAppHeadFrag.setArguments(headerBundle);
 
         fTrans.replace(R.id.fl_header_phone, mAppHeadFrag, "app_header_frag");
-        fTrans.commit();
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        FragmentManager fMan = getSupportFragmentManager();
-        FragmentTransaction fTrans = fMan.beginTransaction();
-
-        if (isEditUser) {
-            fTrans.replace(R.id.fl_main_container_phone, mUserEditFrag);
-        } else {
-            fTrans.replace(R.id.fl_main_container_phone, mMasterListFrag);
-            fTrans.replace(R.id.fl_header_phone, mAppHeadFrag);
-        }
         fTrans.commit();
     }
 }

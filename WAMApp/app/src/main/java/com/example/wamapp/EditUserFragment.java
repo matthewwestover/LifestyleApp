@@ -87,6 +87,7 @@ public class EditUserFragment extends Fragment
         ArrayAdapter<String> ageAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, finalAgeOptions);
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSAge.setAdapter(ageAdapter);
+        mSAge.setSelection(7);
         mSAge.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
@@ -112,7 +113,7 @@ public class EditUserFragment extends Fragment
                 mSSex.setSelection(1);
             }
         } else {
-            mSSex.setSelection(1);
+            mSSex.setSelection(0);
         }
         mSSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -205,7 +206,7 @@ public class EditUserFragment extends Fragment
         if(mHeight > 1) {
             mSHeight.setSelection(mHeight - 1);
         } else {
-            mSHeight.setSelection(0);
+            mSHeight.setSelection(59);
         }
         mSHeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
