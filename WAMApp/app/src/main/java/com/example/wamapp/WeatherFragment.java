@@ -1,12 +1,18 @@
 package com.example.wamapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -18,9 +24,21 @@ import java.net.URL;
 import java.text.DecimalFormat;
 
 public class WeatherFragment extends Fragment {
-    TextView cityName;
-    TextView temperatureResult;
-    TextView countryName;
+
+    String mCity, mCountry;
+    TextView tvCityName;
+    TextView tvTemperatureResult;
+
+    String weatherAPIKey = BuildConfig.WEATHER_API_KEY;
+
+    public WeatherFragment() { }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+
 
     class Weather extends AsyncTask<String, Void, String> {
 
@@ -54,16 +72,23 @@ public class WeatherFragment extends Fragment {
         }
     }
 
-    public String getTemperature(View view) {
-//        cityName = view.findViewById(R.id.city_spin);
-//        temperatureResult = view.findViewById(R.id.temperature_result);
-//        countryName = view.findViewById(R.id.country_spin);
-        String resultText = "";
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.weather_fragment, container, false);
+        tvCityName = view.findViewById(R.id.city_name);
+        tvTemperatureResult = view.findViewById(R.id.temperature_result);
+        mCity = getArguments().getString("userCity");
+        mCountry = getArguments().getString("userCountry");
 
-//        String cName = cityName.getText().toString();
-        String cName = "Salt Lake City";
-//        String coName = countryName.getText().toString();
-        String coName = "USA";
+        this.getTemperature();
+        return view;
+    }
+
+    public void getTemperature() {
+        String resultText;
+        String cName = mCity;
+        String coName = mCountry;
 
         if (coName == "USA") {
             coName = "us";
@@ -77,7 +102,7 @@ public class WeatherFragment extends Fragment {
         Weather weather = new Weather();
         try {
             content = weather.execute("https://api.openweathermap.org/data/2.5/weather?q=" +
-                    cName + "," + coName + "&units=imperial&appid=f6433bd2ce4b361f4acb887f3d679a8e").get();
+                    cName + "," + coName + "&units=imperial&appid=" + weatherAPIKey).get();
 
             // JSON
             JSONObject jObj = new JSONObject(content);
@@ -93,11 +118,14 @@ public class WeatherFragment extends Fragment {
             DecimalFormat df = new DecimalFormat("#");
             temperature = df.format(fTemp);
 
-            resultText = cityName + "\n" + temperature + "˚";
-//            temperatureResult.setText(resultText);
+            resultText = temperature + "˚";
+            Log.i("cityName", cityName);
+            Log.i("coName", coName);
+            Log.i("resultText", resultText);
+            tvCityName.setText(cityName);
+            tvTemperatureResult.setText(resultText);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultText;
     }
 }
