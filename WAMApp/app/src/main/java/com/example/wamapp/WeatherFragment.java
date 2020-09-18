@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -29,6 +28,8 @@ public class WeatherFragment extends Fragment {
     String mCity, mCountry;
     TextView tvCityName;
     TextView tvTemperatureResult;
+
+    String weatherAPIKey = BuildConfig.WEATHER_API_KEY;
 
     public WeatherFragment() { }
 
@@ -101,7 +102,7 @@ public class WeatherFragment extends Fragment {
         Weather weather = new Weather();
         try {
             content = weather.execute("https://api.openweathermap.org/data/2.5/weather?q=" +
-                    cName + "," + coName + "&units=imperial&appid=f6433bd2ce4b361f4acb887f3d679a8e").get();
+                    cName + "," + coName + "&units=imperial&appid=" + weatherAPIKey).get();
 
             // JSON
             JSONObject jObj = new JSONObject(content);
