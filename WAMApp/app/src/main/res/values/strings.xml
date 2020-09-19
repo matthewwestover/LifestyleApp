@@ -22,6 +22,5 @@
     <string name="calorie_label2">Per Day</string>
     <string name="hikes">Click to Search for Hikes</string>
     <string name="search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile Page</string>
 </resources>
