@@ -52,7 +52,7 @@ public class User {
         double heightCM = height * 2.54;
         double weightKG = weight * 0.453592;
         double BMR = 0;
-        if (sex == "Male") {
+        if (sex.equals("Male")) {
             weightKG = weightKG * 13.397;
             heightCM = heightCM * 4.799;
             double age2 = age * 5.677;

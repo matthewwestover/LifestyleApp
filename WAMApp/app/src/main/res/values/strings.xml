@@ -22,4 +22,5 @@
     <string name="calorie_label2">Per Day</string>
     <string name="hikes">Click to Search for Hikes</string>
     <string name="search">Search</string>
+    <string name = "bmr_head">Your BMR: </string>
 </resources>

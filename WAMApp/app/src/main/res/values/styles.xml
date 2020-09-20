@@ -24,4 +24,10 @@
         </item>
     </style>
 
+    <style name="BMRText">
+        <item name="android:textSize">
+            125sp
+        </item>
+    </style>
+
 </resources>
