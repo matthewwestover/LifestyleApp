@@ -90,10 +90,15 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
             }
             case 2: { //BMR Page
                 // Add to position bundle
-                System.out.println("BMR");
+                double bmrValue = User.calculateBMR(mUserHeight,mUserWeight,mUserAge, mUserSex);
                 Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                positionBundle.putDouble("bmr_data", bmrValue);
                 sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
+                try{
+                    startActivity(sendIntent);
+                }catch (Exception e){
+                    Log.e("Error", e.getMessage());
+                }
                 break;
             }
             case 3: { //Weather Page
