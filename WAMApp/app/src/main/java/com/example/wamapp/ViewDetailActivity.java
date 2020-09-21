@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class ViewDetailActivity extends AppCompatActivity {
 
     private Bundle extras;
+    private UserProfileFragment mUserProfileFragment;
     private GoalsFragment mGoalsFragment;
     private BmiFragment mBmiFragment;
     private WeatherFragment mWeatherFragment;
@@ -30,7 +31,8 @@ public class ViewDetailActivity extends AppCompatActivity {
 
         switch(position) {
             case 0: { // Profile
-                //fTrans.replace(R.id.fl_viewdetail, new ProfileFragment());
+                mUserProfileFragment = new UserProfileFragment();
+                fTrans.replace(R.id.fl_viewdetail, mUserProfileFragment, "frag_profiledetail");
                 break;
             }
             case 1: { // BMI
