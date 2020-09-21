@@ -11,6 +11,7 @@ public class ViewDetailActivity extends AppCompatActivity {
     private UserProfileFragment mUserProfileFragment;
     private GoalsFragment mGoalsFragment;
     private BmiFragment mBmiFragment;
+    private BmrFragment mBmrFragment;
     private WeatherFragment mWeatherFragment;
     private HikesFragment mHikesFragment;
 
@@ -46,7 +47,13 @@ public class ViewDetailActivity extends AppCompatActivity {
                 break;
             }
             case 2: { // BMR
-                //fTrans.replace(R.id.fl_viewdetail, new BMRFragment());
+                mBmrFragment = new BmrFragment();
+                double mBMRValue = extras.getDouble("bmr_data");
+                Bundle bmrData = new Bundle();
+                bmrData.putDouble("bmr_data", mBMRValue);
+                mBmrFragment.setArguments(bmrData);
+                fTrans.replace(R.id.fl_viewdetail, mBmrFragment, "frag_BMRdetail");
+                fTrans.commit();
                 break;
             }
             case 3: { // Weather

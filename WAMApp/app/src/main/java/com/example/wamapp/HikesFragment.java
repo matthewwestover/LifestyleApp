@@ -17,6 +17,7 @@ public class HikesFragment extends Fragment implements View.OnClickListener {
 
     private Button mSearchButton;
     private String mCity, mCountry;
+    private String mGeo;
 
     public HikesFragment() {
     }
@@ -43,7 +44,20 @@ public class HikesFragment extends Fragment implements View.OnClickListener {
     public void onClick(final View view) {
         // We have to grab the search term and construct a URI object from it.
         // Probably want to look into setting long/lat or finding out how to get device permissions to get it and set this uri different
-        Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + " Hikes in " + mCity + " " + mCountry);
+        if(mCity.equals("Los Angeles")){
+            mGeo = "geo:34.0522, -118.2437?q=";
+        }else if(mCity.equals("Salt Lake City")){
+            mGeo = "geo:40.767778,-111.845205?q=";
+        }else if(mCity.equals("Chicago")){
+            mGeo = "geo:41.8781,-87.6298?q=";
+        }else if (mCity.equals("New York City")){
+            mGeo = "geo:40.7128,-74.0060?q=";
+        }else if (mCity.equals("Toronto")){
+            mGeo = "geo:43.6532,-79.3832?q=";
+        }else if(mCity.equals("Mexico City")){
+            mGeo = "geo:19.4326,-99.1332?q=";
+        }
+        Uri searchUri = Uri.parse(mGeo+ " Hikes in " + mCity + " " + mCountry);
 
         //Create the implicit intent
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
