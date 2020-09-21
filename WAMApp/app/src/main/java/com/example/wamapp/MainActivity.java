@@ -69,9 +69,14 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         switch (position) {
             case 0: { // Profile Page
-                // Add to position bundle
-                System.out.println("Profile");
                 Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                positionBundle.putString("userFullName", mUserFName);
+                positionBundle.putInt("userAge", mUserAge);
+                positionBundle.putString("userSex", mUserSex);
+                positionBundle.putString("userCity", mUserCity);
+                positionBundle.putString("userCountry", mUserCountry);
+                positionBundle.putInt("userHeight", mUserHeight);
+                positionBundle.putInt("userWeight", mUserWeight);
                 sendIntent.putExtras(positionBundle);
                 startActivity(sendIntent);
                 break;
