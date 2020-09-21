@@ -33,7 +33,24 @@ public class ViewDetailActivity extends AppCompatActivity {
         switch(position) {
             case 0: { // Profile
                 mUserProfileFragment = new UserProfileFragment();
+                String mName = extras.getString("userFullName");
+                int mAge = extras.getInt("userAge");
+                String mSex = extras.getString("userSex");
+                String mCountry = extras.getString("userCountry");
+                String mCity = extras.getString("userCity");
+                int mHeight = extras.getInt("userHeight");
+                int mWeight = extras.getInt("userWeight");
+                Bundle profileData = new Bundle();
+                profileData.putString("userFullName", mName);
+                profileData.putInt("userAge", mAge);
+                profileData.putString("userSex", mSex);
+                profileData.putString("userCountry", mCountry);
+                profileData.putString("userCity", mCity);
+                profileData.putInt("userHeight", mHeight);
+                profileData.putInt("userWeight", mWeight);
+                mUserProfileFragment.setArguments(profileData);
                 fTrans.replace(R.id.fl_viewdetail, mUserProfileFragment, "frag_profiledetail");
+                fTrans.commit();
                 break;
             }
             case 1: { // BMI

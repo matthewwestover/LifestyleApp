@@ -17,9 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class UserProfileFragment extends Fragment {
-    String mFName, mLName;
-    TextView mTVAge, mTVSex, mTVCountry, mTVCity, mTVHeight,
-            mTVWeight, mTVFirstName, mTVLastName;
+    String mFullName, mSex, mCountry, mCity;
+    int mAge, mHeight, mWeight;
+    TextView mTVFullName, mTVAge, mTVSex, mTVCountry, mTVCity, mTVHeight, mTVWeight;
 
     public UserProfileFragment() {
     }
@@ -34,15 +34,30 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
-        mTVFirstName = view.findViewById(R.id.tv_fname);
-        mTVCity = view.findViewById(R.id.city_name);
-        mTVCountry = view.findViewById(R.id.country);
+        mTVFullName = view.findViewById(R.id.tv_fullname);
+        mTVAge = view.findViewById(R.id.tv_age);
+        mTVSex = view.findViewById(R.id.tv_sex);
+        mTVCountry = view.findViewById(R.id.tv_country);
+        mTVCity = view.findViewById(R.id.tv_city);
+        mTVHeight = view.findViewById(R.id.tv_height);
+        mTVWeight = view.findViewById(R.id.tv_weight);
 
-        mFName = getArguments().getString("userFName");
-        Log.i("mFName",mFName);
+        mFullName = getArguments().getString("userFullName");
+        mAge = getArguments().getInt("userAge");
+        mSex = getArguments().getString("userSex");
+        mCountry = getArguments().getString("userCountry");
+        mCity = getArguments().getString("userCity");
+        mHeight = getArguments().getInt("userHeight");
+        mWeight = getArguments().getInt("userWeight");
 
-        mTVFirstName.setText((mFName));
-//        tvCityName.setText(cityName);
+
+        mTVFullName.setText(mFullName);
+        mTVAge.setText("" + mAge);
+        mTVSex.setText(mSex);
+        mTVCountry.setText(mCountry);
+        mTVCity.setText(mCity);
+        mTVHeight.setText("" + mHeight);
+        mTVWeight.setText("" + mWeight);
 
         return view;
     }
