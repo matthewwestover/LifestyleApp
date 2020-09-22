@@ -2,6 +2,8 @@ package com.example.wamapp;
 
 import android.graphics.Bitmap;
 
+import java.text.DecimalFormat;
+
 public class User {
     // Member Vars
     private int userID;
@@ -41,6 +43,9 @@ public class User {
         double heightSq = heightM * heightM;
         double weightKg = weight * 0.453592;
         double BMI = weightKg / heightSq;
+        DecimalFormat df = new DecimalFormat(".##");
+        String strBMI = df.format(BMI);
+        BMI = Double.parseDouble(strBMI);
         return BMI;
     }
 
@@ -57,11 +62,17 @@ public class User {
             heightCM = heightCM * 4.799;
             double age2 = age * 5.677;
             BMR = 88.382 + weightKG + heightCM - age2;
+            DecimalFormat df = new DecimalFormat(".##");
+            String strBMR = df.format(BMR);
+            BMR = Double.parseDouble(strBMR);
         } else {
             weightKG = weightKG * 9.247;
             heightCM = heightCM * 3.098;
             double age2 = age * 4.33;
             BMR = 447.593 + weightKG + heightCM - age2;
+            DecimalFormat df = new DecimalFormat(".##");
+            String strBMR = df.format(BMR);
+            BMR = Double.parseDouble(strBMR);
         }
         return BMR;
     }

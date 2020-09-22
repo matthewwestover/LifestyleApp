@@ -25,7 +25,7 @@ public class UserProfileFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
     }
 
@@ -42,13 +42,15 @@ public class UserProfileFragment extends Fragment {
         mTVHeight = view.findViewById(R.id.tv_height);
         mTVWeight = view.findViewById(R.id.tv_weight);
 
-        mFullName = getArguments().getString("userFullName");
-        mAge = getArguments().getInt("userAge");
-        mSex = getArguments().getString("userSex");
-        mCountry = getArguments().getString("userCountry");
-        mCity = getArguments().getString("userCity");
-        mHeight = getArguments().getInt("userHeight");
-        mWeight = getArguments().getInt("userWeight");
+        if (getArguments() != null) {
+            mFullName = getArguments().getString("userFullName");
+            mAge = getArguments().getInt("userAge");
+            mSex = getArguments().getString("userSex");
+            mCountry = getArguments().getString("userCountry");
+            mCity = getArguments().getString("userCity");
+            mHeight = getArguments().getInt("userHeight");
+            mWeight = getArguments().getInt("userWeight");
+        }
 
 
         mTVFullName.setText(mFullName);
