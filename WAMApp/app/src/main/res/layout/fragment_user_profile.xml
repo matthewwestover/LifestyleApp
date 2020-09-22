@@ -57,12 +57,12 @@
 
         <TextView
             android:id="@+id/tv_fullname"
-            android:layout_width="225dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
             android:layout_marginTop="30dp"
             android:gravity="center_vertical"
             android:text="@string/placeholder_name"
-            android:textSize="26sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +79,7 @@
             android:gravity="center_vertical"
             android:text="@string/age"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_fullname" />
 
@@ -91,6 +92,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_age"
             app:layout_constraintTop_toBottomOf="@+id/tv_fullname"
@@ -105,6 +107,7 @@
             android:gravity="center_vertical"
             android:text="@string/sex"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prof_age" />
 
@@ -117,6 +120,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_sex"
             app:layout_constraintTop_toBottomOf="@+id/tv_age"
@@ -131,6 +135,7 @@
             android:gravity="center_vertical"
             android:text="@string/country"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prof_sex" />
 
@@ -143,6 +148,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_country"
             app:layout_constraintTop_toBottomOf="@+id/tv_sex"
@@ -157,6 +163,7 @@
             android:gravity="center_vertical"
             android:text="@string/city"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prof_country" />
 
@@ -169,6 +176,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_city"
             app:layout_constraintTop_toBottomOf="@+id/tv_country"
@@ -183,6 +191,7 @@
             android:gravity="center_vertical"
             android:text="@string/height"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prof_city" />
 
@@ -195,6 +204,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_height"
             app:layout_constraintTop_toBottomOf="@+id/tv_city"
@@ -209,6 +219,7 @@
             android:gravity="center_vertical"
             android:text="@string/weight"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prof_height" />
 
@@ -221,6 +232,7 @@
             android:paddingEnd="20dp"
             android:gravity="center_vertical"
             android:text="@string/profile"
+            android:textSize="16sp"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@+id/prof_weight"
             app:layout_constraintTop_toBottomOf="@+id/tv_height"
