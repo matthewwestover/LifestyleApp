@@ -54,9 +54,13 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         if (isEditUser) {
             FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-            mBlankHeadFrag = new BlankHeadFragment();
-            fTrans.replace(R.id.fl_main_container_phone, mUserEditFrag, "frag_detail");
-            fTrans.replace(R.id.fl_header_phone, mBlankHeadFrag, "head_detail");
+            if(isTablet()) {
+                fTrans.replace(R.id.fl_edituser_tablet, mUserEditFrag, "frag_detail");
+            } else {
+                mBlankHeadFrag = new BlankHeadFragment();
+                fTrans.replace(R.id.fl_main_container_phone, mUserEditFrag, "frag_detail");
+                fTrans.replace(R.id.fl_header_phone, mBlankHeadFrag, "head_detail");
+            }
             fTrans.commit();
         }
     }
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         switch (position) {
             case 0: { // Profile Page
+                if(isTablet()){
+
+                } else {
+
+                }
                 Intent sendIntent = new Intent(this, ViewDetailActivity.class);
                 positionBundle.putString("userFullName", mUserFName);
                 positionBundle.putInt("userAge", mUserAge);
@@ -151,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         Bitmap thumbnail = (Bitmap) thumbnailImage.get("data");
         mUser = new User(1, firstName, lastName, age, sex, thumbnail, city, country, height, weight);
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+
+
 
         mMasterListFrag = new MasterListFragment();
         fTrans.replace(R.id.fl_main_container_phone, mMasterListFrag, "frag_masterlist");
