@@ -1,11 +1,15 @@
 package com.example.wamapp;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class ViewDetailActivity extends AppCompatActivity {
+public class ViewDetailActivity extends AppCompatActivity{
 
     private Bundle extras;
     private UserProfileFragment mUserProfileFragment;
@@ -20,7 +24,7 @@ public class ViewDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.viewdetail_activity);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             extras = savedInstanceState.getBundle("extras");
         } else {
             extras = getIntent().getExtras();
@@ -30,7 +34,7 @@ public class ViewDetailActivity extends AppCompatActivity {
 
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
 
-        switch(position) {
+        switch (position) {
             case 0: { // Profile
                 mUserProfileFragment = new UserProfileFragment();
                 String mName = extras.getString("userFullName");
@@ -121,5 +125,4 @@ public class ViewDetailActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedState);
         savedState.putBundle("extras", extras);
     }
-
 }

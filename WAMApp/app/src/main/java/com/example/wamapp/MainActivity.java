@@ -54,9 +54,13 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         if (isEditUser) {
             FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-            mBlankHeadFrag = new BlankHeadFragment();
-            fTrans.replace(R.id.fl_main_container_phone, mUserEditFrag, "frag_detail");
-            fTrans.replace(R.id.fl_header_phone, mBlankHeadFrag, "head_detail");
+            if(isTablet()) {
+                fTrans.replace(R.id.fl_edituser_tablet, mUserEditFrag, "frag_detail");
+            } else {
+                mBlankHeadFrag = new BlankHeadFragment();
+                fTrans.replace(R.id.fl_main_container_phone, mUserEditFrag, "frag_detail");
+                fTrans.replace(R.id.fl_header_phone, mBlankHeadFrag, "head_detail");
+            }
             fTrans.commit();
         }
     }
@@ -69,66 +73,150 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
 
         switch (position) {
             case 0: { // Profile Page
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putString("userFullName", mUserFName);
-                positionBundle.putInt("userAge", mUserAge);
-                positionBundle.putString("userSex", mUserSex);
-                positionBundle.putString("userCity", mUserCity);
-                positionBundle.putString("userCountry", mUserCountry);
-                positionBundle.putInt("userHeight", mUserHeight);
-                positionBundle.putInt("userWeight", mUserWeight);
-                sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
-                break;
+                if(isTablet()){
+                    UserProfileFragment profileFrag = new UserProfileFragment();
+                    Bundle profileBundle = new Bundle();
+                    profileBundle.putString("userFullName", mUserFName);
+                    profileBundle.putInt("userAge", mUserAge);
+                    profileBundle.putInt("userWeight", mUserWeight);
+                    profileBundle.putInt("userHeight", mUserHeight);
+                    profileBundle.putString("userCity", mUserCity);
+                    profileBundle.putString("userSex", mUserSex);
+                    profileBundle.putString("userCountry", mUserCountry);
+                    profileFrag.setArguments(profileBundle);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, profileFrag, "profile_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putString("userFullName", mUserFName);
+                    positionBundle.putInt("userAge", mUserAge);
+                    positionBundle.putString("userSex", mUserSex);
+                    positionBundle.putString("userCity", mUserCity);
+                    positionBundle.putString("userCountry", mUserCountry);
+                    positionBundle.putInt("userHeight", mUserHeight);
+                    positionBundle.putInt("userWeight", mUserWeight);
+                    sendIntent.putExtras(positionBundle);
+                    startActivity(sendIntent);
+                    break;
+                }
             }
             case 1: { // BMI Page
                 double bmiValue = User.calculateBMI(mUserHeight, mUserWeight);
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putDouble("bmi_data", bmiValue);
-                sendIntent.putExtras(positionBundle);
-                try {
-                    startActivity(sendIntent);
-                } catch (Exception ex) {
-                    Log.e("Error", ex.getMessage());
+                if(isTablet()){
+                    BmiFragment bmiFrag = new BmiFragment();
+                    Bundle bmiData = new Bundle();
+                    bmiData.putDouble("bmi_data", bmiValue);
+                    bmiFrag.setArguments(bmiData);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, bmiFrag, "bmi_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putDouble("bmi_data", bmiValue);
+                    sendIntent.putExtras(positionBundle);
+                    try {
+                        startActivity(sendIntent);
+                    } catch (Exception ex) {
+                        Log.e("Error", ex.getMessage());
+                    }
+                    break;
                 }
-                break;
             }
             case 2: { //BMR Page
-                // Add to position bundle
                 double bmrValue = User.calculateBMR(mUserHeight,mUserWeight,mUserAge, mUserSex);
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putDouble("bmr_data", bmrValue);
-                sendIntent.putExtras(positionBundle);
-                try{
-                    startActivity(sendIntent);
-                }catch (Exception e){
-                    Log.e("Error", e.getMessage());
+                if(isTablet()){
+                    BmrFragment bmrFrag = new BmrFragment();
+                    Bundle bmrData = new Bundle();
+                    bmrData.putDouble("bmr_data", bmrValue);
+                    bmrFrag.setArguments(bmrData);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, bmrFrag, "bmr_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    // Add to position bundle
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putDouble("bmr_data", bmrValue);
+                    sendIntent.putExtras(positionBundle);
+                    try{
+                        startActivity(sendIntent);
+                    }catch (Exception e){
+                        Log.e("Error", e.getMessage());
+                    }
+                    break;
                 }
-                break;
+
             }
             case 3: { //Weather Page
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putString("userCity", mUserCity);
-                positionBundle.putString("userCountry", mUserCountry);
-                sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
-                break;
+                if(isTablet()){
+                    WeatherFragment weatherFrag = new WeatherFragment();
+                    Bundle locationData = new Bundle();
+                    locationData.putString("userCountry", mUserCountry);
+                    locationData.putString("userCity", mUserCity);
+                    weatherFrag.setArguments(locationData);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, weatherFrag, "weather_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putString("userCity", mUserCity);
+                    positionBundle.putString("userCountry", mUserCountry);
+                    sendIntent.putExtras(positionBundle);
+                    startActivity(sendIntent);
+                    break;
+                }
+
             }
             case 4: { // Hikes Page
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putString("userCity", mUserCity);
-                positionBundle.putString("userCountry", mUserCountry);
-                sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
+                if(isTablet()){
+                    HikesFragment hikeFrag = new HikesFragment();
+                    Bundle locationData = new Bundle();
+                    locationData.putString("userCountry", mUserCountry);
+                    locationData.putString("userCity", mUserCity);
+                    hikeFrag.setArguments(locationData);
+
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, hikeFrag, "hike_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putString("userCity", mUserCity);
+                    positionBundle.putString("userCountry", mUserCountry);
+                    sendIntent.putExtras(positionBundle);
+                    startActivity(sendIntent);
+                    break;
+                }
+
             }
             case 5: { // Goals Page
-                Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                positionBundle.putInt("userAge", mUserAge);
-                positionBundle.putInt("userHeight", mUserHeight);
-                positionBundle.putInt("userWeight", mUserWeight);
-                positionBundle.putString("userSex", mUserSex);
-                sendIntent.putExtras(positionBundle);
-                startActivity(sendIntent);
+                if(isTablet()){
+                    GoalsFragment goalFrag = new GoalsFragment();
+                    Bundle goalData = new Bundle();
+                    goalData.putInt("userAge", mUserAge);
+                    goalData.putInt("userHeight", mUserHeight);
+                    goalData.putInt("userWeight", mUserWeight);
+                    goalData.putString("userSex", mUserSex);
+                    goalFrag.setArguments(goalData);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, goalFrag, "goal_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    positionBundle.putInt("userAge", mUserAge);
+                    positionBundle.putInt("userHeight", mUserHeight);
+                    positionBundle.putInt("userWeight", mUserWeight);
+                    positionBundle.putString("userSex", mUserSex);
+                    sendIntent.putExtras(positionBundle);
+                    startActivity(sendIntent);
+                    break;
+                }
+
             }
         }
     }
@@ -152,17 +240,21 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         mUser = new User(1, firstName, lastName, age, sex, thumbnail, city, country, height, weight);
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
 
+
+
         mMasterListFrag = new MasterListFragment();
-        fTrans.replace(R.id.fl_main_container_phone, mMasterListFrag, "frag_masterlist");
-
-        Bundle headerBundle = new Bundle();
-        headerBundle.putString("userFirstName", firstName);
-        headerBundle.putBundle("userPic", thumbnailImage);
-
-        mAppHeadFrag = new AppHeadFragment();
-        mAppHeadFrag.setArguments(headerBundle);
-
-        fTrans.replace(R.id.fl_header_phone, mAppHeadFrag, "app_header_frag");
+        if(isTablet()){
+            fTrans.hide(mUserEditFrag);
+            fTrans.replace(R.id.fl_list_tablet, mMasterListFrag, "frag_masterlist");
+        } else {
+            fTrans.replace(R.id.fl_main_container_phone, mMasterListFrag, "frag_masterlist");
+            Bundle headerBundle = new Bundle();
+            headerBundle.putString("userFirstName", firstName);
+            headerBundle.putBundle("userPic", thumbnailImage);
+            mAppHeadFrag = new AppHeadFragment();
+            mAppHeadFrag.setArguments(headerBundle);
+            fTrans.replace(R.id.fl_header_phone, mAppHeadFrag, "app_header_frag");
+        }
         fTrans.commit();
     }
 }
