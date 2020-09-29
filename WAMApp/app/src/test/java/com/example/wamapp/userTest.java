@@ -1,7 +1,15 @@
 package com.example.wamapp;
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.LayoutInflater;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import static org.junit.Assert.*;
 
@@ -80,6 +88,123 @@ public class userTest {
         testUser.setCalories((int)calories2);
         assertEquals(303, testUser.getCalories());
     }
+    @Mock
+    MainActivity mainActivity;
 
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
+    @Test
+    public void testMainActivity(){
+       mainActivity.onCreate(null);
+       assertNotNull(mainActivity);
+       assertNull(mainActivity.isEditUser);
+       assertFalse(mainActivity.isTablet());
+    }
+
+    @Mock
+    AppHeadFragment appHeadFragment;
+
+    @Test
+    public void testAppHeadFragment(){
+        appHeadFragment.onCreateView(null,null,null);
+        assertNotNull(appHeadFragment);
+    }
+
+    @Mock
+    BlankHeadFragment blankHeadFragment;
+
+    @Test
+    public void testBlankHeadFragment(){
+        blankHeadFragment.onCreateView(null, null, null);
+        assertNotNull(blankHeadFragment);
+    }
+
+    @Mock BmiFragment bmiFragment;
+
+    @Test
+    public void testBmiFragment(){
+        bmiFragment.onCreateView(null, null, null);
+        assertNotNull(bmiFragment);
+    }
+
+    @Mock BmrFragment bmrFragment;
+
+    @Test
+    public void testBmrFragment(){
+        bmrFragment.onCreateView(null, null, null);
+        assertNotNull(bmrFragment);
+    }
+
+    @Mock EditUserFragment editUserFragment;
+
+    @Test
+    public void testEditUserFragment(){
+        editUserFragment.onCreateView(null, null, null);
+        assertNotNull(editUserFragment);
+    }
+
+    @Mock GoalsFragment goalsFragment;
+
+    @Test
+    public void testGoalsFragment(){
+        goalsFragment.onCreateView(null, null, null);
+        assertNotNull(goalsFragment);
+    }
+
+    @Mock HikesFragment hikesFragment;
+
+    @Test
+    public void testHikesFragment(){
+        hikesFragment.onCreateView(null, null, null);
+        assertNotNull(hikesFragment);
+    }
+
+    @Mock BmiFragment MasterListFragment;
+
+    @Test
+    public void testMasterListFragment(){
+        MasterListFragment.onCreateView(null, null, null);
+        assertNotNull(MasterListFragment);
+    }
+
+    @Mock MyRVAdapter myRVAdapter;
+
+    @Test
+    public void testRVAdapter(){
+        myRVAdapter.onCreateViewHolder(null, 0);
+        assertNotNull(myRVAdapter);
+    }
+
+    @Mock SplashActivity splashActivity;
+
+    @Test
+    public void testSplashActivity(){
+        splashActivity.onCreate(null);
+        assertNotNull(splashActivity);
+    }
+
+    @Mock UserProfileFragment userProfileFragment;
+
+    @Test
+    public void testUserProfileFragment(){
+        userProfileFragment.onCreateView(null, null, null);
+        assertNotNull(userProfileFragment);
+    }
+
+    @Mock ViewDetailActivity viewDetailActivity;
+
+    @Test
+    public void testViewDetailActivity(){
+        viewDetailActivity.onCreate(null);
+        assertNotNull(viewDetailActivity);
+    }
+
+    @Mock WeatherFragment weatherFragment;
+
+    @Test
+    public void testWeatherFragment(){
+        weatherFragment.onCreateView(null, null, null);
+        assertNotNull(weatherFragment);
+    }
 }
