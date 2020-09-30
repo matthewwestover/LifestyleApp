@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splash"
     android:layout_width="match_parent"
@@ -7,11 +8,28 @@
     android:layout_gravity="center"
     tools:context=".SplashActivty"
     >
+
+    <ImageView
+        android:id="@+id/splashImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splash_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/splash_string"
-        android:textSize="50dp"
         android:gravity="center"
-        />
+        android:text="@string/splash_string"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="66dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="3.5"
+        android:shadowDy="3.3"
+        android:shadowRadius="12.6"
+        android:textStyle="bold" />
 </androidx.constraintlayout.widget.ConstraintLayout>
