@@ -23,10 +23,11 @@ import android.widget.TextView;
 import java.util.Objects;
 
 public class UserProfileFragment extends Fragment {
-    String mFullName, mSex, mCountry, mCity;
+    String mFullName, mSex, mCountry, mCity, mFirstName, mLastName;
     int mAge, mHeight, mWeight;
     TextView mTVFullName, mTVAge, mTVSex, mTVCountry, mTVCity, mTVHeight, mTVWeight;
     Button mEditButton;
+    Bundle mProfilePic;
 
     public UserProfileFragment() {
     }
@@ -50,7 +51,9 @@ public class UserProfileFragment extends Fragment {
         mTVWeight = view.findViewById(R.id.tv_weight);
 
         if (getArguments() != null) {
-            mFullName = getArguments().getString("userFullName");
+            mFirstName = getArguments().getString("userFirstName");
+            mLastName  = getArguments().getString("userLastName");
+            mFullName = mFirstName + " " + mLastName;
             mAge = getArguments().getInt("userAge");
             mSex = getArguments().getString("userSex");
             mCountry = getArguments().getString("userCountry");
@@ -73,6 +76,17 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("userFirstName", mFirstName);
+                extras.putString("userLastName", mLastName);
+                extras.putInt("userAge", mAge);
+                extras.putString("userSex", mSex);
+                extras.putString("userCountry", mCountry);
+                extras.putString("userCity", mCity);
+                extras.putInt("userHeight", mHeight);
+                extras.putInt("userWeight", mWeight);
+                extras.putBundle("userPicture", mProfilePic);
+                i.putExtras(extras);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
