@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
             mUserSex = savedInstanceState.getString("userSex");
             mUserFName = savedInstanceState.getString("userFirstName");
             mUserLName = savedInstanceState.getString("userLastName");
-            mUserFName = savedInstanceState.getString("userFullName");
             mUserCity = savedInstanceState.getString("userCity");
             mUserCountry = savedInstanceState.getString("userCountry");
             mUserBMI = savedInstanceState.getDouble("userBMI");
@@ -76,13 +75,15 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                 if(isTablet()){
                     UserProfileFragment profileFrag = new UserProfileFragment();
                     Bundle profileBundle = new Bundle();
-                    profileBundle.putString("userFullName", mUserFName);
+                    profileBundle.putString("userFirstName", mUserFName);
+                    profileBundle.putString("userLastName", mUserLName);
                     profileBundle.putInt("userAge", mUserAge);
                     profileBundle.putInt("userWeight", mUserWeight);
                     profileBundle.putInt("userHeight", mUserHeight);
                     profileBundle.putString("userCity", mUserCity);
                     profileBundle.putString("userSex", mUserSex);
                     profileBundle.putString("userCountry", mUserCountry);
+                    profileBundle.putBundle("userPicture", mUserProfilePic);
                     profileFrag.setArguments(profileBundle);
                     FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
                     fTrans.replace(R.id.fl_detail_tablet, profileFrag, "profile_frag_tablet");
@@ -90,13 +91,15 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                     break;
                 } else {
                     Intent sendIntent = new Intent(this, ViewDetailActivity.class);
-                    positionBundle.putString("userFullName", mUserFName);
+                    positionBundle.putString("userFirstName", mUserFName);
+                    positionBundle.putString("userLastName", mUserLName);
                     positionBundle.putInt("userAge", mUserAge);
                     positionBundle.putString("userSex", mUserSex);
                     positionBundle.putString("userCity", mUserCity);
                     positionBundle.putString("userCountry", mUserCountry);
                     positionBundle.putInt("userHeight", mUserHeight);
                     positionBundle.putInt("userWeight", mUserWeight);
+                    positionBundle.putBundle("userPicture", mUserProfilePic);
                     sendIntent.putExtras(positionBundle);
                     startActivity(sendIntent);
                     break;
@@ -226,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
     public void onDataPass(String firstName, String lastName, int age, int height, int weight, String city, String country, Bundle thumbnailImage, String sex) {
         mUserFName = firstName;
         mUserLName = lastName;
-        mUserFName = firstName + " " + lastName;
         mUserAge = age;
         mUserHeight = height;
         mUserWeight = weight;
