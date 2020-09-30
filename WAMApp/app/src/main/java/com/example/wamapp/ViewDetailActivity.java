@@ -37,21 +37,25 @@ public class ViewDetailActivity extends AppCompatActivity{
         switch (position) {
             case 0: { // Profile
                 mUserProfileFragment = new UserProfileFragment();
-                String mName = extras.getString("userFullName");
+                String mFName = extras.getString("userFirstName");
+                String mLName = extras.getString("userLastName");
                 int mAge = extras.getInt("userAge");
                 String mSex = extras.getString("userSex");
                 String mCountry = extras.getString("userCountry");
                 String mCity = extras.getString("userCity");
                 int mHeight = extras.getInt("userHeight");
                 int mWeight = extras.getInt("userWeight");
+                Bundle profilePic = extras.getBundle("userPicture");
                 Bundle profileData = new Bundle();
-                profileData.putString("userFullName", mName);
+                profileData.putString("userFirstName", mFName);
+                profileData.putString("userLastName", mLName);
                 profileData.putInt("userAge", mAge);
                 profileData.putString("userSex", mSex);
                 profileData.putString("userCountry", mCountry);
                 profileData.putString("userCity", mCity);
                 profileData.putInt("userHeight", mHeight);
                 profileData.putInt("userWeight", mWeight);
+                profileData.putBundle("userPicture", profilePic);
                 mUserProfileFragment.setArguments(profileData);
                 fTrans.replace(R.id.fl_viewdetail, mUserProfileFragment, "frag_profiledetail");
                 fTrans.commit();

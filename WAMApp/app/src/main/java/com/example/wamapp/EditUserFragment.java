@@ -78,6 +78,22 @@ public class EditUserFragment extends Fragment
             thumbnailImage = savedInstanceState.getBundle("userPic");
         }
 
+        Intent intent = getActivity().getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            mFirstName = extras.getString("userFirstName");
+            mETFirstName.setText(mFirstName);
+            mLastName = extras.getString("userLastName");
+            mETLastName.setText(mLastName);
+            mCity = extras.getString("userCity");
+            mCountry = extras.getString("userCountry");
+            mSex = extras.getString("userSex");
+            mAge = extras.getInt("userAge");
+            mHeight = extras.getInt("userHeight");
+            mWeight = extras.getInt("userWeight");
+            thumbnailImage = extras.getBundle("userPicture");
+        }
+
         //set Age spinner
         String[] ageOptions = new String[100];
         for(int i = 0; i < 100; i++) {
