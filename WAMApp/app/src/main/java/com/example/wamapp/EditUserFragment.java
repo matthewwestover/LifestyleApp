@@ -75,7 +75,7 @@ public class EditUserFragment extends Fragment
             mAge = savedInstanceState.getInt("userAge");
             mHeight = savedInstanceState.getInt("userHeight");
             mWeight = savedInstanceState.getInt("userWeight");
-            thumbnailImage = savedInstanceState.getBundle("userPic");
+            thumbnailImage = savedInstanceState.getBundle("userPicture");
         }
 
         Intent intent = getActivity().getIntent();
@@ -314,7 +314,7 @@ public class EditUserFragment extends Fragment
         //Put them in the outgoing Bundle
         outState.putString("userFirstName", mFirstName);
         outState.putString("userLastName", mLastName);
-        outState.putBundle("userPic", thumbnailImage);
+        outState.putBundle("userPicture", thumbnailImage);
         outState.putInt("userAge", mAge);
         outState.putInt("userWeight", mWeight);
         outState.putInt("userHeight", mHeight);
@@ -349,8 +349,8 @@ public class EditUserFragment extends Fragment
             mCity = savedInstanceState.getString("userCity");
             mCountry = savedInstanceState.getString("userCountry");
             mAge = savedInstanceState.getInt("userAge");
-            if(savedInstanceState.getParcelable("userPic") != null) {
-                thumbnailImage = savedInstanceState.getParcelable("userPic");
+            if(savedInstanceState.getParcelable("userPicture") != null) {
+                thumbnailImage = savedInstanceState.getParcelable("userPicture");
             }
         }
     }
