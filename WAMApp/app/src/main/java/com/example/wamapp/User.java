@@ -1,44 +1,132 @@
 package com.example.wamapp;
 
 import android.graphics.Bitmap;
-
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
-public class User {
-    // Member Vars
+@Entity(tableName = "user_table")
+public class User implements Parcelable {
+
+    @PrimaryKey
+    @NonNull
     private int userID;
+
     private String firstName;
     private String lastName;
     private int age;
     private String sex;
-    private Bitmap photo;
     private String city;
     private String country;
-    private int height; // convert to total inches
-    private double weight; // convert as total pounds
+    private int height;
+    private int weight;
     private double BMI;
     private double BMR;
     private String activeLevel;
-    private int weightGoal;
-    private int calories;
+    private double weightGoal;
+    private double calories;
 
-    public User(int userId, String firstName, String lastName, int age, String sex, Bitmap photo, String city, String country, int height, double weight) {
-        this.userID = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.sex = sex;
-        this.photo = photo;
-        this.city = city;
-        this.country = country;
-        this.height = height;
-        this.weight = weight;
-        this.BMI = calculateBMI(height, weight);
-        this.BMR = calculateBMR(height, weight, age, sex);
+    // Bad form to store in DB but whatever. Found https://stackoverflow.com/questions/57117262/how-to-save-images-to-room-persistence-library
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] photo;
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    public User(Parcel in) {
+        firstName = in.readString();
+        lastName = in.readString();
+        sex = in.readString();
+        activeLevel = in.readString();
+        city = in.readString();
+        country = in.readString();
+        userID = in.readInt();
+        age = in.readInt();
+        height = in.readInt();
+        weight = in.readInt();
+        BMR = in.readDouble();
+        BMI = in.readDouble();
+        weightGoal = in.readDouble();
+        calories = in.readDouble();
+        Bitmap profilePic = in.readParcelable(null);
+        setProfileImageData(profilePic);
+    }
+
+    public User(int userID) {
+        firstName = "";
+        lastName = "";
+        userID = userID;
+        age = 14;
+    }
+
+//    public User(int userID, String firstName, String lastName, String sex, String city, String country,
+//                String activeLevel, int age, int height, int weight, double BMR, double BMI,
+//                double weightGoal, double calories, byte[] photo) {
+//    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(sex);
+        dest.writeString(activeLevel);
+        dest.writeString(city);
+        dest.writeString(country);
+        dest.writeInt(userID);
+        dest.writeInt(age);
+        dest.writeInt(height);
+        dest.writeInt(weight);
+        dest.writeDouble(BMR);
+        dest.writeDouble(BMI);
+        dest.writeDouble(weightGoal);
+        dest.writeDouble(calories);
+        Bitmap profilePic = getPhotoBitmap(photo);
+        dest.writeParcelable(profilePic, flags);
+    }
+
+    public void updateUser(Bundle userData) {
+        userID = userData.getInt("userID");
+        firstName = userData.getString("userFirstName");
+        lastName = userData.getString("userLastName");
+        sex = userData.getString("userSex");
+        city = userData.getString("userCity");
+        country = userData.getString("userCountry");
+        age = userData.getInt("userAge");
+        height = userData.getInt("userHeight");
+        weight = userData.getInt("userWeight");
+        BMR = userData.getDouble("userBMR");
+        BMI = userData.getDouble("userBMI");
+        activeLevel = userData.getString("userActiveLevel");
+        weightGoal = userData.getDouble("userGoal");
+        calories = userData.getDouble("userCalories");
+        Bitmap profilePic = userData.getParcelable("userPhoto");
+        setProfileImageData(profilePic);
     }
 
     // Calculate BMI
-    public static double calculateBMI(int height, double weight) {
+    public static double calculateBMI(int height, int weight) {
         double heightM = height * 0.0254;
         double heightSq = heightM * heightM;
         double weightKg = weight * 0.453592;
@@ -53,7 +141,7 @@ public class User {
     // Formula from: https://bmi-calories.com/bmr-calculator.html
     // Men BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
     // Women BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
-    public static double calculateBMR(int height, double weight, int age, String sex) {
+    public static double calculateBMR(int height, int weight, int age, String sex) {
         double heightCM = height * 2.54;
         double weightKG = weight * 0.453592;
         double BMR = 0;
@@ -97,141 +185,129 @@ public class User {
         return calories + (500 * weightGoal);
     }
 
-    public void updateUser(int userId, String firstName, String lastName, int age, String sex, Bitmap photo, String city, String country, int height, double weight) {
-        this.userID = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.sex = sex;
-        this.photo = photo;
-        this.city = city;
-        this.country = country;
-        this.height = height;
-        this.weight = weight;
-    }
-
     // Getters and Setters
     public int getUserID() {
         return userID;
     }
-
     public void setUserID(int userID) {
         this.userID = userID;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getFullName() {
         return firstName + " " + lastName;
     }
-
     public int getAge() {
         return age;
     }
-
     public void setAge(int age) {
         this.age = age;
     }
-
     public String getSex() {
         return sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
-    public Bitmap getPhoto() {
-        return this.photo;
-    }
-
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
-    }
-
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
-
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
-
     public int getHeight() {
         return height;
     }
-
     public void setHeight(int height) {
         this.height = height;
     }
-
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
-
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
-
     public double getBMI() {
         return BMI;
     }
-
-    public void setBMI(int BMI) {
+    public void setBMI(double BMI) {
         this.BMI = BMI;
     }
-
     public double getBMR() {
         return BMR;
     }
-
-    public void setBMR(int BMR) {
+    public void setBMR(double BMR) {
         this.BMR = BMR;
     }
-
     public String getActiveLevel() {
         return activeLevel;
     }
-
     public void setActiveLevel(String activeLevel) {
         this.activeLevel = activeLevel;
     }
-
-    public int getWeightGoal() {
+    public double getWeightGoal() {
         return weightGoal;
     }
-
-    public void setWeightGoal(int weightGoal) {
+    public void setWeightGoal(double weightGoal) {
         this.weightGoal = weightGoal;
     }
-
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
-
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
+    }
+    public byte[] getPhoto() { return photo; }
+    public void setPhoto(byte [] photo) { this.photo = photo; }
+    public byte[] getPhotoData() {
+        return photo;
+    }
+
+    // Bitmap to byte[] to profileImageData
+    public void setProfileImageData(Bitmap image) {
+        if (image != null) {
+            //bitmap to byte[]
+            photo = bitmapToByte(image);
+        } else {
+            photo = null;
+        }
+    }
+
+    public byte[] bitmapToByte(Bitmap bitmap) {
+        try {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            //bitmap to byte[] stream
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] x = stream.toByteArray();
+            //close stream to save memory
+            stream.close();
+            return x;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Bitmap getPhotoBitmap(byte[] profileImage) {
+        if (profileImage != null) {
+            return BitmapFactory.decodeByteArray(profileImage, 0, profileImage.length);
+        }
+        return null;
     }
 }

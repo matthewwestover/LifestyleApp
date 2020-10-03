@@ -43,19 +43,6 @@
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
 
-        <Button
-            android:id="@+id/prof_edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="#E4E4E4"
-            android:text="Edit"
-            android:background="@null"
-            android:textColor="#0A2DE8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_fullname"
-            app:layout_constraintTop_toBottomOf="@+id/prof_header" />
-
         <TextView
             android:id="@+id/tv_fullname"
             android:layout_width="wrap_content"
