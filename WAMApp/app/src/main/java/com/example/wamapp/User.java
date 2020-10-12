@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -76,9 +77,26 @@ public class User implements Parcelable {
         age = 14;
     }
 
+//    @Ignore
 //    public User(int userID, String firstName, String lastName, String sex, String city, String country,
 //                String activeLevel, int age, int height, int weight, double BMR, double BMI,
 //                double weightGoal, double calories, byte[] photo) {
+//        this.userID =userID;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.sex = sex;
+//        this.city = city;
+//        this.country =country;
+//        this.activeLevel = activeLevel;
+//        this.age = age;
+//        this.height = height;
+//        this.weight = weight;
+//        this.BMR = BMR;
+//        this.BMI = BMI;
+//        this. weightGoal = weightGoal;
+//        this.calories = calories;
+//        this.photo = photo;
+//
 //    }
 
     @Override

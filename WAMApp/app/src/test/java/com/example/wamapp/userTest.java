@@ -1,10 +1,13 @@
 package com.example.wamapp;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.service.autofill.UserData;
 import android.view.LayoutInflater;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -14,7 +17,31 @@ import org.mockito.junit.MockitoRule;
 import static org.junit.Assert.*;
 
 public class userTest {
-    User testUser = new User(1, "Kevin", "Wright", 15, "Male", null, "Salt Lake City", "USA",  55,105);
+    int uID = 1;
+    String fname = "Kevin";
+    String lname = "Wright";
+    int age = 15;
+    String sex = "Male";
+    String city = "Salt Lake City";
+    String country = "USA";
+    int Height = 55;
+    int weight = 105;
+    User testUser = new User(0);
+
+    @Before
+    public void setUp() throws Exception {
+        testUser.setUserID(uID);
+        testUser.setFirstName(fname);
+        testUser.setLastName(lname);
+        testUser.setAge(age);
+        testUser.setSex(sex);
+        testUser.setCity(city);
+        testUser.setCountry(country);
+        testUser.setHeight(Height);
+        testUser.setWeight(weight);
+        testUser.setBMI(User.calculateBMI(Height,weight));
+        testUser.setBMR(User.calculateBMR(Height, weight, age, sex));
+    }
 
     @Test
     //Tests the sets and gets for user ID:
@@ -81,12 +108,12 @@ public class userTest {
     //Tests user's weight goals
     public void testUserGoals()
     {
-        double calories = testUser.calculateCalories(1311.7,"Lightly Active", 3.0);
+        double calories = User.calculateCalories(1311.7,"Lightly Active", 3.0);
         testUser.setCalories((int)calories);
-        assertEquals(3303, testUser.getCalories());
-        double calories2 = testUser.calculateCalories(1311.7,"Lightly Active", -3.0);
+        assertEquals(3303, testUser.getCalories(),0.0);
+        double calories2 = User.calculateCalories(1311.7,"Lightly Active", -3.0);
         testUser.setCalories((int)calories2);
-        assertEquals(303, testUser.getCalories());
+        assertEquals(303, testUser.getCalories(), 0.0);
     }
     @Mock
     MainActivity mainActivity;
@@ -98,7 +125,6 @@ public class userTest {
     public void testMainActivity(){
        mainActivity.onCreate(null);
        assertNotNull(mainActivity);
-       assertNull(mainActivity.isEditUser);
        assertFalse(mainActivity.isTablet());
     }
 
