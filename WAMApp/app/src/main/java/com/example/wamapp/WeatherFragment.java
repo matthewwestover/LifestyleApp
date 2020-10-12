@@ -3,6 +3,8 @@ package com.example.wamapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -28,8 +30,9 @@ public class WeatherFragment extends Fragment {
     String mCity, mCountry;
     TextView tvCityName;
     TextView tvTemperatureResult;
-
+    private User mCurrentUser;
     String weatherAPIKey = BuildConfig.WEATHER_API_KEY;
+    private UserViewModel mUserViewModel;
 
     public WeatherFragment() { }
 
@@ -38,7 +41,15 @@ public class WeatherFragment extends Fragment {
         super.onAttach(context);
     }
 
-
+    final Observer<User> userObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User user) {
+            // Update the UI if this data variable changes
+            if(user!=null) {
+                mCurrentUser = user;
+            }
+        }
+    };
 
     class Weather extends AsyncTask<String, Void, String> {
 
@@ -76,10 +87,13 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_fragment, container, false);
+        mUserViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+        mUserViewModel.getUser().observe(this, userObserver);
+        mCity = String.valueOf(mUserViewModel.getUser().getValue().getCity());
+        mCountry = String.valueOf(mUserViewModel.getUser().getValue().getCountry());
+
         tvCityName = view.findViewById(R.id.city_name);
         tvTemperatureResult = view.findViewById(R.id.temperature_result);
-        mCity = getArguments().getString("userCity");
-        mCountry = getArguments().getString("userCountry");
 
         this.getTemperature();
         return view;

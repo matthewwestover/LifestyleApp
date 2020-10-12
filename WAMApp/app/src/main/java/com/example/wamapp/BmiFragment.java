@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class BmiFragment extends Fragment {
     private TextView mTvBMIData;
-    private Double bmiValue;
-    private String mStringBMIData, bmiValueString;
+    private UserViewModel mUserViewModel;
 
     public BmiFragment() {
     }
@@ -24,34 +25,37 @@ public class BmiFragment extends Fragment {
         super.onAttach(context);
     }
 
+    final Observer<User> userObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User user) {
+            // Update the UI if this data variable changes
+            if(user!=null) {
+                double bmiValue = user.getBMI();
+                String bmiValueString = Double.toString(bmiValue);
+                mTvBMIData.setText(bmiValueString);
+            }
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.bmi_fragment, container, false);
+        View view = inflater.inflate(R.layout.bmi_fragment, container, false);
+        mTvBMIData = view.findViewById(R.id.tv_bmi_data);
 
-        //Get the views
-        mTvBMIData = fragmentView.findViewById(R.id.tv_bmi_data);
+        mUserViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+        mUserViewModel.getUser().observe(this, userObserver);
 
-        if (savedInstanceState != null) {
-            bmiValueString = savedInstanceState.getString("BMI_TEXT");
-        }
-        else {
-            bmiValue = getArguments().getDouble("bmi_data");
-            bmiValueString = Double.toString(bmiValue);
-        }
-        //Set the text in the fragment
-        mTvBMIData.setText("" + bmiValueString);
+        double bmiValue = 0.0;
+        String bmiValueString = Double.toString(bmiValue);
 
-        return fragmentView;
+        mTvBMIData.setText(bmiValueString);
+
+        return view;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        //Get the strings
-        mStringBMIData = mTvBMIData.getText().toString();
-        //Put them in the outgoing Bundle
-        outState.putString("BMI_TEXT",mStringBMIData);
-        //Save the view hierarchy
         super.onSaveInstanceState(outState);
     }
 }
