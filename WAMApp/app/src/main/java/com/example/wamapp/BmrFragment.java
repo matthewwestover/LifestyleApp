@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 public class BmrFragment extends Fragment {
     private TextView mTvBMRData;
-    private Double bmrValue;
-    private String mStringBMRData, bmrValueString;
+    private UserViewModel mUserViewModel;
 
     public BmrFragment() {
     }
@@ -24,34 +25,37 @@ public class BmrFragment extends Fragment {
         super.onAttach(context);
     }
 
+    final Observer<User> userObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User user) {
+            // Update the UI if this data variable changes
+            if(user!=null) {
+                double bmrValue = user.getBMR();
+                String bmrValueString = Double.toString(bmrValue);
+                mTvBMRData.setText(bmrValueString);
+            }
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.bmr_fragment, container, false);
+        View view = inflater.inflate(R.layout.bmr_fragment, container, false);
+        mTvBMRData = view.findViewById(R.id.tv_bmr_data);
 
-        //Get the views
-        mTvBMRData = fragmentView.findViewById(R.id.tv_bmr_data);
+        mUserViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+        mUserViewModel.getUser().observe(this, userObserver);
 
-        if (savedInstanceState != null) {
-            bmrValueString = savedInstanceState.getString("BMR_TEXT");
-        }
-        else {
-            bmrValue = getArguments().getDouble("bmr_data");
-            bmrValueString = Double.toString(bmrValue);
-        }
-        //Set the text in the fragment
-        mTvBMRData.setText("" + bmrValueString);
+        double bmrValue = 0.0;
+        String bmrValueString = Double.toString(bmrValue);
 
-        return fragmentView;
+        mTvBMRData.setText(bmrValueString);
+
+        return view;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        //Get the strings
-        mStringBMRData = mTvBMRData.getText().toString();
-        //Put them in the outgoing Bundle
-        outState.putString("BMR_TEXT",mStringBMRData);
-        //Save the view hierarchy
         super.onSaveInstanceState(outState);
     }
 }
