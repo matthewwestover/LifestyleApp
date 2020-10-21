@@ -34,8 +34,7 @@ public class User implements Parcelable {
     private String activeLevel;
     private double weightGoal;
     private double calories;
-
-    // Bad form to store in DB but whatever. Found https://stackoverflow.com/questions/57117262/how-to-save-images-to-room-persistence-library
+    private int steps;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] photo;
 
@@ -296,6 +295,8 @@ public class User implements Parcelable {
     public byte[] getPhotoData() {
         return photo;
     }
+    public int getSteps() { return steps; }
+    public void setSteps(int step) { steps = step; }
 
     // Bitmap to byte[] to profileImageData
     public void setProfileImageData(Bitmap image) {
