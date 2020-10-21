@@ -26,4 +26,5 @@
     <string name = "profile">Profile Page</string>
     <string name = "full_name">Name</string>
     <string name = "placeholder_name">Disgruntled Client</string>
+    <string name = "step_head">Steps: </string>
 </resources>
