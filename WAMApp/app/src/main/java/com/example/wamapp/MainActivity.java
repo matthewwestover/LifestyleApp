@@ -207,6 +207,21 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                     break;
                 }
             }
+            case 6: { // Steps Page
+                if(isTablet()){
+                    StepCounterFragment stepFrag = new StepCounterFragment();
+                    stepFrag.setArguments(positionBundle);
+                    FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+                    fTrans.replace(R.id.fl_detail_tablet, stepFrag, "step_frag_tablet");
+                    fTrans.commit();
+                    break;
+                } else {
+                    Intent sendIntent = new Intent(this, ViewDetailActivity.class);
+                    sendIntent.putExtras(positionBundle);
+                    startActivity(sendIntent);
+                    break;
+                }
+            }
         }
     }
 

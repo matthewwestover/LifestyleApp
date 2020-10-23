@@ -41,6 +41,8 @@ public class MasterListFragment extends Fragment
         mItemList.add("Weather");
         mItemList.add("Trails");
         mItemList.add("Goals");
+        mItemList.add("Steps");
+
 
         mImageList = new ArrayList<>();
         mImageList.add(R.drawable.male);
@@ -49,6 +51,7 @@ public class MasterListFragment extends Fragment
         mImageList.add(R.drawable.weather);
         mImageList.add(R.drawable.trails);
         mImageList.add(R.drawable.goals);
+        mImageList.add(R.drawable.step);
 
         //Get the recycler view
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_Master);
