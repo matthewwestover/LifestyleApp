@@ -2,11 +2,26 @@ package com.example.wamapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Database;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+
 
 public class MainActivity extends AppCompatActivity implements EditUserFragment.OnDataPass, MyRVAdapter.DataPasser, AppHeadFragment.OnDataPass {
     private Boolean isEditUser = false;
@@ -22,6 +37,15 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("WAMAPP", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("WAMAPP", "Could not initialize Amplify", error);
+        }
 
         setContentView(R.layout.activity_main);
         containerBody = isTablet() ? R.id.fl_list_tablet : R.id.fl_main_container_phone;
@@ -112,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
     public void passData(int position) {
         Bundle positionBundle = new Bundle();
         positionBundle.putInt("click_position", position);
-
+        uploadFile("WAMAPP");
         // Switch tells which fragment to pass data to
         // Tablets load the fragment next to the list of modules and has to be handled seperately
         // Data should now come from the room for each fragment to get and update user data
@@ -235,6 +259,24 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
             super.onBackPressed();
         }
     }
+
+    public void uploadFile(String key) {
+        File file = new File (getApplicationContext().getFilesDir(), key);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.append(UserDatabase.getDatabase(getApplicationContext()).userDao().getUser().toString());
+            writer.close();
+        }catch (Exception error){
+            Log.e("WAMAPP", "Upload failed", error);
+        }
+
+        Amplify.Storage.uploadFile( key, file, result -> Log.i ("WAMAPP", "Successfully uploaded: " + result.getKey()),
+                storageFailure -> Log.e("WAMAPP", "Upload failed", storageFailure));
+    }
+
+
+
 
 //    // For EditUserData
 //    @Override
