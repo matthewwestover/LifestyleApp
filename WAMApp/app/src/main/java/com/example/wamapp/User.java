@@ -39,7 +39,7 @@ public class User implements Parcelable {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] photo;
 
-    private ArrayList<Integer> weatherValueList;
+    private String weatherValues;
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
@@ -333,7 +333,7 @@ public class User implements Parcelable {
         return null;
     }
 
-    public void addTemp(int temp) {
-        weatherValueList.add(temp);
+    public void addTemp(String temp) {
+        weatherValues.concat(temp);
     }
 }

@@ -95,18 +95,17 @@ public class WeatherFragment extends Fragment {
         tvCityName = view.findViewById(R.id.city_name);
         tvTemperatureResult = view.findViewById(R.id.temperature_result);
 
-        int resultantTemp = this.getTemperature();
-        mUserViewModel.getUser().getValue().addTemp(resultantTemp);
+        mUserViewModel.getUser().getValue().addTemp(this.getTemperature());
         mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
 
         return view;
     }
 
-    public int getTemperature() {
+    public String getTemperature() {
         String resultText;
         String cName = mCity;
         String coName = mCountry;
-        int temp = 0;
+        String temperature = "";
 
         if (coName == "USA") {
             coName = "us";
@@ -127,8 +126,6 @@ public class WeatherFragment extends Fragment {
             String mainTemp = jObj.getString("main");
             String cityName = jObj.getString("name");
 
-            String temperature = "";
-
             JSONObject mainPart = new JSONObject(mainTemp);
             temperature = mainPart.getString("temp");
 
@@ -142,11 +139,9 @@ public class WeatherFragment extends Fragment {
             Log.i("resultText", resultText);
             tvCityName.setText(cityName);
             tvTemperatureResult.setText(resultText);
-
-            temp = Integer.parseInt(temperature);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return temp;
+        return temperature + ", ";
     }
 }
