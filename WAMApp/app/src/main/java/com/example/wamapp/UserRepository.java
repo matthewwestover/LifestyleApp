@@ -3,9 +3,14 @@ package com.example.wamapp;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
+
+import com.amplifyframework.core.Amplify;
+
+import java.io.File;
 
 public class UserRepository extends AppCompatActivity {
     private static UserRepository single_instance = null;

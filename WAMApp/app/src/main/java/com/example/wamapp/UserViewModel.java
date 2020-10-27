@@ -33,6 +33,7 @@ public class UserViewModel extends AndroidViewModel {
 
     public void dumpInDB(User user) {
         update(user);
+        uploadFile("WAMUSER", getApplication());
     }
 
     public LiveData<User> getUser() {
@@ -45,6 +46,13 @@ public class UserViewModel extends AndroidViewModel {
 
     public VoidAsyncTask getNumberOfUserInDatabase() {
         return mUserRepository.getNumberOfProfilesInDatabase();
+    }
+
+    public void uploadFile(String key, Application application) {
+
+        File file = application.getApplicationContext().getDatabasePath("user_database");
+        Amplify.Storage.uploadFile( key, file, result -> Log.i ("WAMAPP", "Successfully uploaded: " + result.getKey()),
+                storageFailure -> Log.e("WAMAPP", "Upload failed", storageFailure));
     }
 }
 

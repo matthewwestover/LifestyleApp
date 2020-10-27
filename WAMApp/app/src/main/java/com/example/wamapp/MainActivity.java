@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
     public void passData(int position) {
         Bundle positionBundle = new Bundle();
         positionBundle.putInt("click_position", position);
-        uploadFile("WAMAPP");
         // Switch tells which fragment to pass data to
         // Tablets load the fragment next to the list of modules and has to be handled seperately
         // Data should now come from the room for each fragment to get and update user data
@@ -258,21 +257,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         } else {
             super.onBackPressed();
         }
-    }
-
-    public void uploadFile(String key) {
-        File file = new File (getApplicationContext().getFilesDir(), key);
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.append(UserDatabase.getDatabase(getApplicationContext()).userDao().getUser().toString());
-            writer.close();
-        }catch (Exception error){
-            Log.e("WAMAPP", "Upload failed", error);
-        }
-
-        Amplify.Storage.uploadFile( key, file, result -> Log.i ("WAMAPP", "Successfully uploaded: " + result.getKey()),
-                storageFailure -> Log.e("WAMAPP", "Upload failed", storageFailure));
     }
 
 
