@@ -58,8 +58,8 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     public void uploadFile(String key, Application application) {
-        File file = getDatabaseFile(application);
-//        File file = application.getApplicationContext().getDatabasePath("user_database");
+//        File file = getDatabaseFile(application);
+        File file = application.getApplicationContext().getDatabasePath("user_database");
         Amplify.Storage.uploadFile( key, file, result -> Log.i ("WAMAPP", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("WAMAPP", "Upload failed", storageFailure));
     }

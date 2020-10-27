@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         } else {
             isEditUser = savedInstanceState.getBoolean("editUserBoolean");
         }
-
-
         changeDisplay();
     }
 
@@ -103,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         } else {
             fTrans.replace(containerBody, new MasterListFragment(), "masterList_frag");
             fTrans.replace(containerHeader, new AppHeadFragment());
+            mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
         }
 
         fTrans.addToBackStack(null);

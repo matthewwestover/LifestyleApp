@@ -31,18 +31,15 @@ public abstract class UserDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback;
+    private static RoomDatabase.Callback sRoomDatabaseCallback =
+            new RoomDatabase.Callback(){
 
-    static {
-        sRoomDatabaseCallback = new Callback() {
-
-            @Override
-            public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                super.onOpen(db);
-                new PopulateDbAsync(INSTANCE).execute();
-            }
-        };
-    }
+                @Override
+                public void onOpen (@NonNull SupportSQLiteDatabase db){
+                    super.onOpen(db);
+                    new PopulateDbAsync(INSTANCE).execute();
+                }
+            };
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
