@@ -48,11 +48,22 @@ public class UserViewModel extends AndroidViewModel {
         return mUserRepository.getNumberOfProfilesInDatabase();
     }
 
-    public void uploadFile(String key, Application application) {
+    public File getDatabaseFile(Application application) {
+        String backupDBPath = UserDatabase.getDatabase(application.getApplicationContext()).getOpenHelper().getWritableDatabase().getPath();
+        File dbPath = new File(backupDBPath) ;
+        if (dbPath.exists()) {
+            Log.d("UserRepository", "File created successfully.") ;
+        }
+        return dbPath ;
+    }
 
-        File file = application.getApplicationContext().getDatabasePath("user_database");
+    public void uploadFile(String key, Application application) {
+        File file = getDatabaseFile(application);
+//        File file = application.getApplicationContext().getDatabasePath("user_database");
         Amplify.Storage.uploadFile( key, file, result -> Log.i ("WAMAPP", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("WAMAPP", "Upload failed", storageFailure));
     }
+
+
 }
 

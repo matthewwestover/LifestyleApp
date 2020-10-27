@@ -34,7 +34,7 @@ public class User implements Parcelable {
     private String activeLevel;
     private double weightGoal;
     private double calories;
-    private int steps;
+    private int steps = 0;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] photo;
 

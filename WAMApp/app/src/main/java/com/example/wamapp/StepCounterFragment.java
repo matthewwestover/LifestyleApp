@@ -94,7 +94,7 @@ public class StepCounterFragment extends Fragment implements SensorEventListener
                 if (startShake > SHAKE_THRESHOLD) {
                     mSensorManager.registerListener(StepCounterFragment.this, mAccelSensor, SensorManager.SENSOR_DELAY_FASTEST);
                 } else if (stopShake > SHAKE_THRESHOLD) {
-                    mUserViewModel.update(mUserViewModel.getUser().getValue());
+                    mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
                     mSensorManager.unregisterListener(StepCounterFragment.this);
                 }
             }
