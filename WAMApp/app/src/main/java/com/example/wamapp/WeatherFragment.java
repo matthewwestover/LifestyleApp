@@ -88,21 +88,25 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_fragment, container, false);
         mUserViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
-        mUserViewModel.getUser().observe(this, userObserver);
+        mUserViewModel.getUser().observe(getViewLifecycleOwner(), userObserver);
         mCity = String.valueOf(mUserViewModel.getUser().getValue().getCity());
         mCountry = String.valueOf(mUserViewModel.getUser().getValue().getCountry());
 
         tvCityName = view.findViewById(R.id.city_name);
         tvTemperatureResult = view.findViewById(R.id.temperature_result);
 
-        this.getTemperature();
+        int resultantTemp = this.getTemperature();
+        mUserViewModel.getUser().getValue().addTemp(resultantTemp);
+        mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
+
         return view;
     }
 
-    public void getTemperature() {
+    public int getTemperature() {
         String resultText;
         String cName = mCity;
         String coName = mCountry;
+        int temp = 0;
 
         if (coName == "USA") {
             coName = "us";
@@ -138,8 +142,11 @@ public class WeatherFragment extends Fragment {
             Log.i("resultText", resultText);
             tvCityName.setText(cityName);
             tvTemperatureResult.setText(resultText);
+
+            temp = Integer.parseInt(temperature);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return temp;
     }
 }
