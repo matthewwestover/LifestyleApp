@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
     public void changeDisplay() {
         FragmentManager fManager = getSupportFragmentManager();
         FragmentTransaction fTrans = fManager.beginTransaction();
-
         if (isEditUser) {
             fTrans.replace(containerBody, new EditUserFragment(), "editUser_frag");
             fTrans.replace(containerHeader, new BlankHeadFragment());
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
             fTrans.replace(containerBody, new MasterListFragment(), "masterList_frag");
             fTrans.replace(containerHeader, new AppHeadFragment());
         }
-
         fTrans.addToBackStack(null);
         fTrans.commit();
     }
@@ -140,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
         // Tablets load the fragment next to the list of modules and has to be handled seperately
         // Data should now come from the room for each fragment to get and update user data
         switch (position) {
+
             case 0: { // Profile Page
                 if(isTablet()){
                     UserProfileFragment profileFrag = new UserProfileFragment();
@@ -186,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements EditUserFragment.
                 }
             }
             case 3: { // Weather Page
+                mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
                 if(isTablet()){
                     WeatherFragment weatherFrag = new WeatherFragment();
                     weatherFrag.setArguments(positionBundle);

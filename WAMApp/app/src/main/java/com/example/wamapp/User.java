@@ -39,7 +39,7 @@ public class User implements Parcelable {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] photo;
 
-    private String weatherValues;
+    private String  weatherValues;
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
@@ -301,6 +301,7 @@ public class User implements Parcelable {
     public int getSteps() { return steps; }
     public void setSteps(int step) { steps = step; }
     public String getWeatherValues() { return weatherValues; }
+    public void setWeatherValues(String weatherValues) {this.weatherValues = weatherValues;}
 
     // Bitmap to byte[] to profileImageData
     public void setProfileImageData(Bitmap image) {
@@ -335,7 +336,10 @@ public class User implements Parcelable {
     }
 
     public void addTemp(String temp) {
-        String temps = this.getWeatherValues();
-        weatherValues = temps + temp;
+        if(this.getWeatherValues() == null){
+            this.setWeatherValues(temp);
+        }
+
+        weatherValues = temp;
     }
 }
