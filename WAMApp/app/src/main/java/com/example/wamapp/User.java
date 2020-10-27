@@ -300,6 +300,7 @@ public class User implements Parcelable {
     }
     public int getSteps() { return steps; }
     public void setSteps(int step) { steps = step; }
+    public String getTemps() { return weatherValues; }
 
     // Bitmap to byte[] to profileImageData
     public void setProfileImageData(Bitmap image) {
@@ -334,6 +335,7 @@ public class User implements Parcelable {
     }
 
     public void addTemp(String temp) {
-        weatherValues.concat(temp);
+        String temps = this.getTemps();
+        weatherValues.concat(temps);
     }
 }
