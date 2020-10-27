@@ -13,6 +13,7 @@ import androidx.room.PrimaryKey;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 @Entity(tableName = "user_table")
 public class User implements Parcelable {
@@ -37,6 +38,8 @@ public class User implements Parcelable {
     private int steps = 0;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] photo;
+
+    private ArrayList<Integer> weatherValueList;
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
@@ -328,5 +331,9 @@ public class User implements Parcelable {
             return BitmapFactory.decodeByteArray(profileImage, 0, profileImage.length);
         }
         return null;
+    }
+
+    public void addTemp(int temp) {
+        weatherValueList.add(temp);
     }
 }
