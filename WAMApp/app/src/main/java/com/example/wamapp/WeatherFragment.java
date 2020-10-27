@@ -96,7 +96,6 @@ public class WeatherFragment extends Fragment {
         tvTemperatureResult = view.findViewById(R.id.temperature_result);
 
         mUserViewModel.getUser().getValue().addTemp(this.getTemperature());
-        mUserViewModel.dumpInDB(mUserViewModel.getUser().getValue());
 
         return view;
     }
@@ -142,6 +141,6 @@ public class WeatherFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return temperature + ", ";
+        return temperature;
     }
 }
