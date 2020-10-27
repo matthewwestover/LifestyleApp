@@ -5,6 +5,11 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 29
 
     defaultConfig {
@@ -56,4 +61,14 @@ dependencies {
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
     implementation "androidx.room:room-runtime:2.2.5"
     annotationProcessor "androidx.room:room-compiler:2.2.5"
+
+    //amplify plugins
+    implementation 'com.amplifyframework:aws-api:1.4.1'
+    implementation 'com.amplifyframework:aws-datastore:1.4.1'
+
+    //support for java 8 features
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+
+    implementation 'com.amplifyframework:aws-storage-s3:1.4.1'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.4.1'
 }
